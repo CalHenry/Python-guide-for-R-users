@@ -13,13 +13,40 @@ Le bon outil au endroit c'est mieux.
 
 ### Librairies Python pour aider la transition depuis R
 Datasets :
-    - [Polars](https://pola.rs/) - Synthax expressive proche de dyplr, chain actions. Mieux que pandas
+    - [Polars](https://pola.rs/) - Synthax expressive proche de dyplr, chain actions. Mieux que pandas. Lazy mode comme dbplyr
+
+<details>
+<summary>Comparatif synthaxe dplyr, polars and pandas</summary>
+
+  ```r
+  # dplyr
+  df %>%
+    filter(mpg > 20) %>%
+    select(cyl, mpg) %>%
+    mutate(kpl = mpg * 0.425)
+  ```  
+  
+  ```python
+  # polars
+  df.filter(pl.col("mpg") > 20) \
+    .select(["cyl", "mpg"]) \
+    .with_columns((pl.col("mpg") * 0.425).alias("kpl"))
+  ```
+  
+
+  ```python
+  # pandas
+  df = df[df["mpg"] > 20][["cyl", "mpg"]]
+  df["kpl"] = df["mpg"] * 0.425
+  ```
+</details>
+
 
 Data Viz :
  - [seaborn](https://seaborn.pydata.org/) - API moins rugeuse que Matplotlib pour les utilisateurs venant de R
 
 Notebooks :
-    - [marimo](https://marimo.io/) - Notebook pur Python, réactif et avec une philosophie intéressantes
+  - [marimo](https://marimo.io/) - Notebook pur Python, réactif et avec une philosophie intéressantes. `LINK TO NB PAGE`
     
     
     
