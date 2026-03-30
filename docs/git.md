@@ -15,8 +15,8 @@ Commandes clés:
 - **git add**
 - **git status**
 - **git push**
+- **git chekout**
 - (git diff)
-- (git branch/ git chekout)
 
 Plutôt que d'expliquer les commandes, voici les séquences de commandes les plus utiles :
  
@@ -24,7 +24,7 @@ Plutôt que d'expliquer les commandes, voici les séquences de commandes les plu
 <summary>Faire un commit</summary>
 
   ```sh
-  $ ->  git status           # <- liste les modifications non commit
+  $ ->  git status           # <- liste les fichiés modifiés et pas encore commit
   On branch main
   Your branch is up to date with 'origin/main'.
   
@@ -45,33 +45,43 @@ Plutôt que d'expliquer les commandes, voici les séquences de commandes les plu
   $ -> git add docs/git.md
   
   $ -> git commit -m "doc: add 'command sequence' section"
+  [main 2249eb5] add doc: add 'command sequence' section
+   1 file changed, 29 insertions(+), 2 deletions(-)
   ```
 </details>
 
 <details>
-<summary>Faire un commit</summary>
+<summary>Push to remote après un commit</summary>
 
   ```sh
-  $ ->  git status   
-  On branch main
+  $ ->  git push
+  To https://github.com/CalHenry/MBook.git
+     2c24012..2249eb5  main -> main
+  ```
+</details>
+
+<details>
+<summary>Commande pour lier un repo github (origin) avec le git du projet (main)</summary>
+
+  ```sh
+  # when the local git already exist
+  $ -> git remote add origin https://github.com/CalHenry/MBook.git
+  $ -> git branch -M main
+  $ -> git push -u origin main
+  ```
+</details>
+
+<details>
+<summary>Créer et/ ou changer de branche</summary>
+
+  ```sh
+  # Créer une branche avec "-b", change automatiquement à la branche créee
+  $ -> git checkout -b newbranch
+  Switched to a new branch 'newbranch'
+  
+ # Changer de branche
+  $ -> git checkout main
+  Switched to branch 'main'
   Your branch is up to date with 'origin/main'.
-  
-  Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git restore <file>..." to discard changes in working directory)
-  modified:   docs/git.md
-  modified:   docs/index.md
-  modified:   docs/notebooks.md
-  modified:   docs/toolkit.md
-  
-  Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-  mindmap.md
-  
-  no changes added to commit (use "git add" and/or "git commit -a")
-  
-  $ -> git add docs/git.md
-  
-  $ -> git commit -m "doc: add 'command sequence' section"
   ```
 </details>
