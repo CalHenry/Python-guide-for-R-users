@@ -9,8 +9,7 @@ Venant de R, Python c'est :
 - Beacoup d'outils et de logiciels à gérer en même temps juste pour que ça "marche"
 - Compliqué pour aucune raison
 - Ne pas comprendre pourquoi les environements virtuels nous veulent tant de mal
-- Des noms de librairies sans saveur comparé aux packages de R
-- Une synthaxe qui fait semblant de ressembler à celle de R
+- Des noms de librairies sans saveurs comparé aux packages de R
 - Un language qui n'a pas le Tidyverse 😰
 
 C'est également une occasion de :
