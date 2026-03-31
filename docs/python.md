@@ -57,18 +57,22 @@ uv change ça:
 - les packages sont installés dans un seul dossier (cache)
 - au lieu de réinstaller, on relis avec un **hardlink** le dossier du cache avec le dossier de l'environnement.
 
-```sh
-~/.cache/uv/                        ← global cache, one copy per version
-  numpy-1.24/
-  numpy-2.0/
-  pandas-2.1/
-       │
-       │  hardlinks
-       ├──────────────────────────────────┐
-       ↓                                  ↓
-project_a/venv/site-packages/      project_b/venv/site-packages/
-  numpy-1.24/  ← hardlink            numpy-2.0/  ← hardlink
-  pandas-2.1/  ← hardlink            pandas-2.1/  ← hardlink
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                                                                     │
+│  ~/.cache/uv/                ← global cache, one copy per version   │
+│    numpy-1.24/                                                      │
+│    numpy-2.0/                                                       │
+│    pandas-2.1/                                                      │
+│        │                                                            │
+│        │  hardlinks                                                 │
+│        ├──────────────────────────────────┐                         │
+│        ↓                                  ↓                         │
+│  project_a/venv/site-packages/      project_b/venv/site-packages/   │
+│    numpy-1.24/  ← hardlink            numpy-2.0/  ← hardlink        │
+│    pandas-2.1/  ← hardlink            pandas-2.1/  ← hardlink       │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
 ```
 
 
