@@ -161,9 +161,9 @@ On utilise donc un fichier spécial **.gitignore** qui contient simplement les n
 # manually added
 .env                   # <- secrets
 data/
-models/*               # <- '*' dit a git d'ignorer tout ce que contient models
-!models/*.py           # <- '!' = inverse - on ignore PAS les fichiers .py 
-!models/README.md      # <- on ignore pas le readme
+models/*               # <- '*' dit à git d'ignorer tout ce que contient models
+!models/*.py           # <- '!' = inverse - on n'ignore PAS les fichiers .py 
+!models/README.md      # <- on n'ignore pas le readme
 
 
 # Python-generated files
