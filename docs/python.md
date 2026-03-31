@@ -1,8 +1,8 @@
-# Python, environnement virtuels et packages
+# Python, environnements virtuels et packages
 
 
 ## Python binary
-- Le Python installé est un ***interpréteur***. Il compile le script en bitcode (.pyc), puis la machine virtuelle de python l'exécute.  
+- Le Python installé est un ***interpréteur***. Il compile le script en bytecode (.pyc), puis la machine virtuelle de python l'exécute.  
 - On peut avoir plusieurs versions de python installées (Python 3.9, Python3.12,...)
 
 
@@ -17,13 +17,13 @@ UV est le gestionnaire pour Python qui change tout. Pixi pour les utilisateurs d
 
 
 Pourquoi est-ce qu'on s'embête à créer des environnements virtuels ?  
-Pourquoi est-ce qu'on installes pas les packages sur le python de l'ordinateur et c'est tout ?
+Pourquoi est-ce qu'on installe pas les packages sur le python de l'ordinateur et c'est tout ?
 
 -> Problèmes de dépendances et besoin d'isoler les versions des packages.
 
 **On ne peut pas avoir plusieurs versions d'une même librairie installées au même endroit.**  
 
-Concrètement quand un package est intallé il se trouve dans un dossier 
+Concrètement quand un package est installé il se trouve dans un dossier 
 ```sh
 site-packages/
 ├── numpy/                  ← code
@@ -45,17 +45,19 @@ Chaque projet doit avoir son environnement virtuel dédié.
 
 ## Comment ça fonctionne à l'intérieur
 
+> Pour comprendre pourquoi on crée un environnement par projet et pas un seul global, il faut comprendre ce qui se passe concrètement.
+
 C'est principalement une histoire de chemins (Paths).  
 Chaque version à un chemin différent.  
 
-Si les environnements virtuels sont des dossiers différents, est-ce que je télécharges le même package à chaque fois (duplication des fichiers et utilisation inutile du disque) ?  
+Si les environnements virtuels sont des dossiers différents, est-ce que je télécharge le même package à chaque fois (duplication des fichiers et utilisation inutile du disque) ?  
 -> Oui avec pip et venv, Non avec uv.
 
 pip ne sait pas si le package est déjà installé sur la machine, alors il le réinstalle. -> pas opti.
 
 uv change ça:
 - les packages sont installés dans un seul dossier (cache)
-- au lieu de réinstaller, on relis avec un **hardlink** le dossier du cache avec le dossier de l'environnement.
+- au lieu de réinstaller, il relie avec un **hardlink** le dossier du cache avec le dossier de l'environnement.
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
@@ -91,17 +93,17 @@ uv change ça:
 ...
 ```
 
-# Gestionnaires d'environnement et dépots de packages
+# Gestionnaires d'environnement et dépôts de packages
 Petit tour de l'écosystème, des anciennes et des nouvelles options.
 
-## Pip & PyPi
-Pypi est le dépôt **officiel** des packages Python.  
-Pip est le gestionnaire de packages **officiel** de Python, il télécharge les packages depuis PyPi.
+## Pip & PyPI
+PyPI est le dépôt **officiel** des packages Python.
+Pip est le gestionnaire de packages **officiel** de Python, il télécharge les packages depuis PyPI.
 
 
 ## UV
 
-UV c'est l'outil qui fait enfin consensus dans la communauté Python. Ce qu'il apporte ?
+UV c'est l'outil qui fait enfin consensus dans la communauté Python. Qu'est-ce qu'il apporte ?
 -  **vitesse** (~10x plus rapide)
 - **compatibilité** (développé comme un remplaçant de pip, donc 100% compatible)
 - tout en un (gestionnaire de packages ET gestionnaire d'environnements)
@@ -110,10 +112,10 @@ UV c'est l'outil qui fait enfin consensus dans la communauté Python. Ce qu'il a
 ## Conda
 
 Conda est un gestionnaire de packages et d'environnements. A la base pour les utilisateurs de Python, il sert en fait au projets qui utilisent plusieurs languages en même temps. 
-On s'en sert particulièrement dans le milieu académique et en biologie car de nombreux packages spécifiques à ces milieux sont accessiblent avec conda pour différents languages.
+On s'en sert particulièrement dans le milieu académique et en biologie car de nombreux packages spécifiques à ces milieux sont accessibles avec conda pour différents languages.
 
 Conda c'est aussi un dépôt de packages (python, R, julia, C, C++).  
-- Pour un utilisateur de python : télécharge et gère les dépendances d'autres languages. Nombreux sont les packages python qui sont construit par dessus des packages écrit en C, C++ ou Fortran pour les performance (très courant pour les packages scientifiques. Les packages R sont d'ailleurs souvent basé sur les mêmes librairies). Conda assure que l'installation se fait correctement (là ou pip installe juste la partie python et ne gère pas les dépendances dans d'autres languages)
+- Pour un utilisateur de python : télécharge et gère les dépendances d'autres languages. Nombreux sont les packages python qui sont construit par dessus des packages écrit en C, C++ ou Fortran pour les performance (très courant pour les packages scientifiques. Les packages R sont d'ailleurs souvent basé sur les mêmes librairies). Conda assure que l'installation se fait correctement (là où pip installe juste la partie python et ne gère pas les dépendances dans d'autres languages)
 
 
 <details>
@@ -131,17 +133,55 @@ Et Pixi, c'est quoi ?
 Pixi c'est le mélange de conda-forge et UV :
 - Destiné aux utilisateurs de conda (remplace conda, 100% compatible)
 - Intègre les standards de développement Python (pyproject, environnement virtuel à la racine du dossier du projet, ...)
-- Gère en même temps les packages issues de PyPi et de conda, meilleur des 2 mondes entre UV et conda (peut installer des packages PyPi quand ils n'existent pas sur conda, ainsi on utilise un seul gestionnaire, là où avant il fallait soi-même gérer les dépendances entre les conda et pypi).
-- plus rapide que conda (algorithme de résoulution des dépendances plus rapide)
+- Gère en même temps les packages issues de PyPI et de conda, meilleur des 2 mondes entre UV et conda (peut installer des packages PyPI quand ils n'existent pas sur conda, ainsi on utilise un seul gestionnaire, là où avant il fallait soi-même gérer les dépendances entre conda et PyPI).
+- plus rapide que conda
 
-## Conclusion
+## Recommandations
 
-Projet 100% python -> UV
-Projet Python et R -> Pixi
+| Cas d'usage | Outil |
+|-------------|-------|
+| Projet 100% Python | UV |
+| Projet Python + R | Pixi |
+| Projet Python + packages scientifiques lourds | Pixi |
 
-Je conseille de ne pas utilisé Pip car UV est simplement mieux, ni Conda car Pixi est plus complet pour python.
 
-## Concepts Python
+Je conseille de ne pas utiliser Pip car UV est simplement meilleur, ni Conda car Pixi est plus complet pour Python.
 
-[pyproject.toml](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/) est un fichier de configuration des projets python modernes.  
-Il centralise toutes les informations du projet et permet de donner les dépendances, les prérequis du projet. Il permet aussi de gérer commencer built et utiliser le projet si c'est un package.
+
+## Fichiers important dans un projet Python
+
+### pyproject.toml
+
+c'est le fichier qui déclare ton projet et ses dépendances, l'équivalent du `DESCRIPTION` d'un package R. Il remplace les anciens `setup.py` et `requirements.txt`.
+
+<details>
+<summary>Exemple minimaliste de pyproject.toml</summary>
+
+[pyproject.toml](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/) est un standard **officiel** de l'écosystème Python et est supporté par les outils moderne
+
+```toml
+[project]
+name = "mon-projet"
+version = "0.1.0"
+description = "Une courte description"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.24",
+    "pandas>=2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "black>=23.0",
+]
+```
+</details>
+
+### Lockfile
+Si tu utilise UV ou Pixi, tu va trouver un [Lockfile](https://docs.astral.sh/uv/concepts/projects/layout/#the-lockfile) (uv.lock ou pixi.lock) dans ton dossier (même concept que renv.lock).
+
+Ce fichier est ce qui rend le projet reproductible. C'est à partir de lui que l'on sait quelles versions de quels packages installer, et ce selon la configuration (OS, version de Python).   
+C'est un snapshot des dépendances du projet.
+Le lock file est gérer par le UV ou Pixi et on ne doit pas le modifier directement.
