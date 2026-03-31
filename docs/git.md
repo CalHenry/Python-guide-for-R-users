@@ -1,129 +1,250 @@
 # Git & GitHub
 
-Git (local) est le logiciel de version control le plus populaire et un incontournable pour tous les projets de code.  
-GitHub (remote) est une plateforme de Microsoft qui hébeberge les "repositories" git.  
+## Pourquoi utiliser Git ?
+
+- **Ne jamais perdre** une version de ton code
+- **Traçabilité** : savoir qui a modifié quoi et quand
+- **Travail en équipe** : merger les contributions de plusieurs personnes
+- **Expérimenter sans risque** grâce aux branches
+
+## Modèle mental
+
+Git c'est comme un **photographe** qui prend des photos de ton projet à des moments précis.
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                        3 états de GIT                               │
+│                                                                     │
+│   ┌──────────┐    ┌──────────┐    ┌──────────────┐                  │
+│   │Working   │    │ Staging  │    │ Local Repo   │   ┌──────────┐   │
+│   │Directory │───▶│  Area    │───▶│  (.git)      │──▶│ Remote   │   │
+│   │(fichiers)│    │ (index)  │    │  (commits)   │   │ (GitHub) │   │
+│   └──────────┘    └──────────┘    └──────────────┘   └──────────┘   │
+│                                                                     │
+│   Tu modifies    git add =            git commit =      git push =  │
+│   tes fichiers   "préparer la         "prendre la         "envoyer  │
+│   ici            photo"               photo"              la photo" │
+└─────────────────────────────────────────────────────────────────────┘
+```
+Chaque **commit** est une photo horodatée de ton projet. Tu peux revenir à n'importe quelle photo à tout moment.
 
 
-- Ne plus jamais perdre aucune version de mes codes
-- Intégration avec GitHub
-- Outil pour développer de manière plus robuste et mieux organisée (branches)
-- Traçabilité des changements
+### Git ≠ GitHub
+```
+   GIT LOCAL                    GITHUB (Remote)
+┌────────────────┐          ┌────────────────────┐
+│                │  push    │                    │
+│   .git/        │─────────▶│   github.com/      │
+│   (ton ordi)   │  pull    │   ton-repo         │
+│                │◀─────────│                    │
+└────────────────┘          └────────────────────┘
+Tu travailles ici              Backup & collaboration
+```
 
-Il est important de comprendre la relation entre Git et GitHub.  
-Ils sont voué à être des miroirs, l'un en local et avec qui ont travaille activement, l'autre un dépôt, sur une plateforme dédiée à la collaboration.  
-Quand on travaille seul on exploite peut les fonctionnalités de GitHub, mais en équipe, la plateforme prend tout son sens.  
-Rien n'oblige à utiliser GitHub, c'est Git qui est le plus important, mais tout avoir sur GitHub, c'est la sécurité de ne jamais perdre son travail, c'et pouvoir le partager ou le télécharger sur n'importe quel ordinateur connecté à internet.
+Git fonctionne **seul** sur ton ordi. GitHub est juste un cloud pour sauvegarder et partager ton travail. Il apporte ensuite des fonctionnalités pour le travail en équipe et la collaboration sur un même répo.
 
-## Git 
-Git est un CLI (command line interface), on s'en sert depuis le terminal avec des commandes et des arguments.  
-On aussi s'en servir avec les IDE modernes qiu intègrent GIT dans l'interface, ce qui permet de gérer Git sans devoir utiliser le terminal. Plus simple à prendre en main et à utiliser pour les commandes de base mais c'est toujours bon de savoir se débrouiller depuis le terminal.
 
-Commandes clés:
-- **git commit**
-- **git add**
-- **git status**
-- **git push**
-- **git switch**
-- **git diff**
+## Git en pratique
 
-## Concepts
-Git fonctionne en indexant les fichiers et les changements. Il conserve chaque version d'un fichier depuis sa première apparition dans un commit.
-De base Git propose de suivre tous les fichiers d'un répo, or on veut en ignorer certains. On utilise don un fichier spécial **.gitignore** et on inscrit tous les fichiers ou dossier à ne pas traquer avec Git. Par example le dossier `data/`.
+Git est un outil en ligne de commande (CLI), mais les IDE modernes (VS Code, RStudio) l'intègrent directement.
 
-Un fichier peut être dans 4 étas pour Git:
-- Untrack : Ignoré ou nouveau
-- Track : Suivi, connu
-- Stage : Prêt, indexé
-- Unstaged : Modifié, non-indexé
+### Commandes essentielles
 
-Stage est une étape obligatoire pour un fichier. C'est là que Git indexe les changements.
+| Commande | Rôle |
+|----------|------|
+| `git status` | Voir l'état des fichiers |
+| `git add <fichier>` | Indexer un fichier |
+| `git commit -m "message"` | Créer un snapshot |
+| `git push`/ `git pull`| Envoyer sur GitHub/ Recevoir de GitHub|
+| `git switch -c <branche>` | Créer une branche |
+| `git switch <branche>` | Changer de branche |
+| `git diff` | Comparer les modifications |
 
-Plutôt que d'expliquer les commandes, voici les séquences de commandes les plus utiles :
+### Les 4 états d'un fichier
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│   ┌────────────┐                                                    │
+│   │ Untracked  │  ← Nouveau fichier, ignoré par Git                 │
+│   └─────┬──────┘                                                    │
+│         │ git add                                                   │
+│         ▼                                                           │
+│   ┌────────────┐                                                    │
+│   │  Staged    │  ← Prêt à être photographié                        │
+│   └─────┬──────┘                                                    │
+│         │ git commit                                                │
+│         ▼                                                           │
+│   ┌────────────┐                                                    │
+│   │ Committed  │                                                    │
+│   │ (dans .git)│                                                    │
+│   └─────┬──────┘                                                    │
+│         │ (modification)                                            │
+│         ▼                                                           │
+│   ┌────────────┐     git add       ┌────────────┐                   │
+│   │  Modified  │──────────────────▶│  Staged    │                   │
+│   └────────────┘                   └─────┬──────┘                   │
+│                                          │ git commit               │
+│                                          ▼                          │
+│                                    ┌────────────┐                   │
+│                                    │ Committed  │                   │
+│                                    └────────────┘                   │
+└─────────────────────────────────────────────────────────────────────┘
+```
 
-<details>
-<summary>Faire un commit</summary>
+### Séquences typiques
 
+**Faire un commit**  
 "Tu viens de modifier deux fichiers et tu veux sauvegarder uniquement l'un d'eux"
 
-1. `git add <file>` : sélectionner les fichiers à inclure dans le prochain commit.
-2. commit les fichiers indexés
+```sh
+# 1. Voir ce qui a changé
+$ git status
+# 2. Ajouter les fichiers souhaités
+$ git add docs/git.md
+# 3. Créer le commit
+$ git commit -m "doc: améliorer la section git"
+```
 
-  ```sh
-  $ ->  git status           # <- liste les fichiers modifiés et pas encore commit
-  On branch main
-  Your branch is up to date with 'origin/main'.
-  
-  Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git restore <file>..." to discard changes in working directory)
-  modified:   docs/git.md
-  modified:   docs/notebooks.md
-  
-  Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-  mindmap.md
-  
-  no changes added to commit (use "git add" and/or "git commit -a")
-  
-  $ -> git add docs/git.md
-  
-  $ -> git commit -m "doc: add 'command sequence' section"
-  [main 2249eb5] add doc: add 'command sequence' section
-   1 file changed, 29 insertions(+), 2 deletions(-)
-  ```
-</details>
-
-<details>
-<summary>Push to remote après un commit</summary>
-
+**Push to remote après un commit**  
 "Tu viens de faire un commit et tu veux le 'push' sur GitHub"
 
-  ```sh
-  $ ->  git push # sans arguments, push tous les commits manquant à Github
-  To https://github.com/CalHenry/MBook.git
-     2c24012..2249eb5  main -> main
-  ```
-</details>
+```sh
+$ git push # sans arguments, push tous les commits de la branche actuelle à sa jumelle sur GitHub
+To https://github.com/CalHenry/MBook.git
+    2c24012..2249eb5  main -> main
+```
+
+**Lier un repo local à GitHub**  
+"Tu as déjà initié git sur ton dossier et tu veux le lier à un répo GitHub que tu viens de créer sur le site.
+```sh
+# Si le repo local existe déjà 
+$ git remote add origin https://github.com/user/monrepo.git
+$ git branch -M main
+$ git push -u origin main
+```
+
+**Créer et/ ou changer de branche**  
+"Tu veux ajouter une feature ou tester quelque chose"
+
+```sh
+# Créer une branche avec "-c", change automatiquement à la branche créee
+$ git switch -c newbranch
+Switched to a new branch 'newbranch'
+
+# Changer de branche
+$ git switch main
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+```
+
+**Comparer 2 versions d'un fichier**  
+"Tu veux savoir quels sont les changements depuis la version du dernier commit. Par exemple pour écrire le message du commit à venir"
+
+```sh
+# Retourne le diff pour tous les fichiers modifiés et non commit
+$ git diff
+
+# Tu peux également préciser quel fichier
+$ git diff docs/git.md
+```
+
+## Concepts
+
+**.gitignore**
+Par défaut, Git suit tous les fichiers du dossier, or on veut ne veut pas tracker tous les fichiers de tout les dossiers.  
+Par exemple le dossier `data/`, ou les informations secrètes (comme les clefs API), ou les fichiers que l'on ne veut pas voir sur GitHub.
+
+On utilise donc un fichier spécial **.gitignore** qui contient simplement les noms des dossiers et fichiers à ignorer pour git.
 
 <details>
-<summary>Commande pour lier un repo github (origin) avec le git du projet (main)</summary>
+<summary>Exemple de .gitignore</summary>
 
-  ```sh
-  # when the local git already exist
-  $ -> git remote add origin https://github.com/CalHenry/MBook.git
-  $ -> git branch -M main
-  $ -> git push -u origin main
-  ```
+```sh
+# manually added
+.env                   # <- secrets
+data/
+models/*               # <- '*' dit a git d'ignorer tout ce que contient models
+!models/*.py           # <- '!' = inverse - on ignore PAS les fichiers .py 
+!models/README.md      # <- on ignore pas le readme
+
+
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+```
 </details>
 
-<details>
-<summary>Créer et/ ou changer de branche</summary>
 
-  ```sh
-  # Créer une branche avec "-c", change automatiquement à la branche créee
-  $ -> git switch -c newbranch
-  Switched to a new branch 'newbranch'
-  
- # Changer de branche
-  $ -> git switch main
-  Switched to branch 'main'
-  Your branch is up to date with 'origin/main'.
-  ```
-</details>
+**Branches**
+Les branches (comme pour un arbre) permettent d'expérimenter sans casser le code principal (main). 
+On se détache de la branche principale. Il y a donc une branche active sur lequel on fait les commits, et les autres branches. 
+On peut changer de branche à tout moment et ainsi développer plusieurs partie du projet en même temps.
+Par exemple:
+Tout notre code se trouve dans 1 seul script, le projet grandit et ce n'est plus maintenable. On veut changer la structure du code.  
+Pour garder **main** intact (car cette version du projet est validé et fonctionne), on créer une branche. Dans cette branche on va créer de nouveaux scripts, répartir le code, gérer les imports,... On fais les commits dans la branche, on teste le code. Une fois validé, on fusionne (merge) dans main.
 
-<details>
-<summary>Comparer 2 versions d'un fichier</summary>
+```
+┌─────────────────────────────────────────┐
+│                                         │
+│  main:                                  │
+│    o---o---o---o                        │
+│         \                               │
+│          \---o---o   feature-branch     │
+│                                         │
+│  ↑ main peut continuer d'avancer        │
+│  ↳ dev en parallèle sur feature-branch  │
+│                                         │
+└─────────────────────────────────────────┘
+```
+Les branches sont l’une des fonctionnalités les plus puissantes de Git. Elles permettent de travailler sur plusieurs parties d’un projet en parallèle, ou même de maintenir différentes versions du même projet sans interférer les unes avec les autres.  
 
-  ```sh
-  $ -> git diff 
-  Switched to a new branch 'newbranch'
-  
- # Changer de branche
-  $ -> git switch main
-  Switched to branch 'main'
-  Your branch is up to date with 'origin/main'.
-  ```
-</details>
+En pratique, quand tu changes de branche, Git met automatiquement à jour les fichiers que tu vois. Un même fichier peut exister en plusieurs versions selon les branches — Git sait toujours quelle version appartient à quelle branche.
 
 
 ## Bonnes pratiques
+
+- Faire des commits atomiques : un commit = une seule modification logique. (Il vaut mieux beaucoup de commits simples que 1 commit avec 15 modifications réparties sur 4 fichiers)
+- Écrire des messages de commit explicites : "fix: corriger bug sur login" plutôt que "modif". (Tu peux t'aider de bannière qui oriente directement le thème du commit "fix:", "feat", file:"... )
+<details>
+<summary>Exemple de messages de commits pour data scientists</summary>
+
+Les messages de commits sont comme la documentation dans le code, ça peut paraitre évident, mais le toi dans 2 mois qui va devoir comprendre où tu as fais telle modif et surtout pourquoi, va te remercier. Lire un message de commit est bien plus rapide que devoir se plonger dans le code.
+
+```
+fix & file:
+
+fix:
+- update how Paths are written in config.py -> updates in the scripts
+that uses them
+- update the dataframe schema in build_dataset.py
+file:
+- merge.py can be run to merge the 2 datasets created by
+build_dataset.py and pipeline.py
+```
+
+```
+feat & fix
+
+fix: type checker complaints about Vector() of lancedb, fixed with
+Annotated
+feat: add doc_id as a parameter so the user can choose the document in
+the agent run function. doc_id is added to RAGDeps
+```
+
+```    
+refactor:
+
+new folder structure:
+- entry points in ./scripts/
+- ingestion pipeline in src/rag/ingestion/
+- query pipeline in src/rag/query
+```
+</details>
+
+- push régulièrement : Si c'est sur GitHub c'est en sécurité.
+- commit tant que c'est frais pour éviter d'oublier les raisons des changements
