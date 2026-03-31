@@ -5,10 +5,68 @@ Le bon outil au endroit c'est mieux.
 
 ## Python
 
-- Positron (IDE)
-- UV (gestionaire d'environement)
+<details>
+<summary><a href="https://positron.posit.co/" target="_blank">Positron (IDE)</a></summary>
+
+Positron est un fork de VSCode par Posit pour les datasciences et rapprocher créer un outil Python familier aux développeurs R. 
+
+En 2 mots: c'est VSCode qui se déguise en RStudio. VSCode adapté pour les datasciences.  
+
+Les avantages majeurs par rapport à VScode sont :
+- Support de R et de Python nativement
+- Même layout que RStudio - même logique que RStudio
+- Data explorer
+- UI adaptée pour Python et R (principalement la selection du language et de l'environement virtuel)
+- Support natif pour Quarto, Shiny, Air (formatter et language server pour R)
+
+C'est donc un IDE moderne, qui corriges tous les manques de VScode pour les data sciences et l'exploration de données, dans une solution intégrée.  
+Positron s'inspire beaucoup de RStudio et pour le mieux.
+
+
+>Posit ne compte pas arrêter de supporter RStudio, qui reste le meilleur outil pour développer en R. Positron est une super alternative pour tout utilisateur de R qui doit se mettre à Python.
+
+</details>
+ 
+<details>
+<summary><a href="https://docs.astral.sh/uv/pip/environments/" target="_blank">UV (gestionaire d'environement)</a></summary>
+
+UV est présenté dans la section sur les gestionnaires d'environements.
+
+Voici les commandes les plus utiles de UV
+
+```sh
+# Doc de la CLI
+uv help 
+# détail d'une commande de UV
+uv help <command>  # ex : uv help init
+
+# Initialiser un projet
+uv init <nom-projet>
+
+# Ajouter/ supprimer un package
+uv add <package>
+uv remove <package>
+
+# Installer ou mettre à jour l'environement virtuel
+uv sync
+
+# Schema des dépendances du projet sous forme d'arbre
+uv tree
+ 
+# Run une commande
+uv run <command> # ex : uv run marimo edit <notebook.py>
+
+# Run un script
+uv run <file.py>
+```
+</details>
+
+
+
 - Pixi (gestionnaire d'environement pour conda)
 - Ruff (linter and formater)
+<details>
+<summary><a href="https://positron.posit.co/" target="_blank">Ruff (linter and formater)</a></summary>
 - Pyrefly (type checker)
 
 ## Librairies Python pour aider la transition depuis R
