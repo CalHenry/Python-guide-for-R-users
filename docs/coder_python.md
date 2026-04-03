@@ -1,0 +1,289 @@
+# Coder en Python
+
+Cette section présente différents aspects du code Python :
+- Concepts importants, concepts qui n'existent pas sur R ou qui existent différement
+- Outils pour la qualité du code
+- Élements de syntaxe
+
+## Type hints
+
+En 2 mots : On précise le type attendu de l'élément avec la syntaxe "élément: type"
+```python
+a: int = 12
+```
+> [!NOTE]
+> Les type hints de Python n'ont vraiment d'équivalent sur R. Sur R, il est possible de vérifier les types avec des packages comme [checkmate](https://mllg.github.io/checkmate/), mais le langage lui-même ne propose pas de syntaxe pour les indiquer comme Python le fait.
+
+> Comme leur nom l'indique, elles sont optionnelles et n'ont aucun impact sur l'exécution du code (simplement ignorée par Python), alors pourquoi on s'embête avec ça ?
+
+- Lisibilité
+- Aide à comprendre le code et le prendre en main
+- Permet au développeur de corriger des erreurs directement dans l'éditeur au lieu de les découvrir pendant l'exécution.
+
+Avec les annotations, on retire les ambiguïtés.
+
+Python supporte nativement les types de base
+
+```python
+# Variable
+age: int = 21
+nom: str = "Mathis"
+prix: float = 9.99
+actif: bool = True
+
+# Signature de fonction (arguments et élément retourné)
+def salut(nom: str) -> str:
+    return f"Bonjour, {nom}"
+```
+
+<details>
+<summary>D'autres types plus complexes</summary>
+
+```python
+items : list[]
+items : dict[]
+items : tuple[]
+
+# On peut aussi préciser les éléments contenus
+list[int]
+dict[str, int]
+
+
+# On peut exprimer des conditions sur les types
+def trouver(id: int) -> str | None:  # str ou None - ici, on utilise l'opérateur | pour 'ou'
+    ...
+
+from typing import Literal # le module typing contient les types plus complexes
+
+def towers_of_paris(value: Literal["Eiffel", "Montparnasse"]) -> None:  # 'value' ne peut prendre que deux valeurs bien précises'
+    ...
+```
+</details>
+
+
+<details>
+<summary>Exemple d'utilisation des types hints</summary>
+
+- Définir un dictionnaire
+```python
+from typing import TypedDict # TypeDict permet de définir un dictionnaire et le type de chacune des clefs
+
+class ChunkResult(TypedDict):
+    chunk_id: int
+    chunk_text: str
+    publish_date: date
+    _distance: float
+    
+def retrieve(retrieval_query: str, doc_id: int | list[int]) -> list[ChunkResult]:
+    ...
+# On définit le dictionnaire ChunkResult. Dans la fonction, on indique qu'elle retourne une liste de dictionnaires ChunkResult. On sait ce que retourne la fonction et ce que contient chaque éléments de la liste retournée.
+# On pourra utiliser ChunkResult ailleurs dans le code et toujours savoir précisément ce qu'il doit contenir.
+```
+</details>
+
+## Type checker, formateur et linter
+
+**Trio de choc** pour écrire un code irréprochable.
+
+### Type checker - le physio de boite de nuit
+
+***Si t'as pas le bon type, tu rentres pas.***
+
+Le type checker est un logiciel qui vérifie que les types annoncés dans les types hints sont bien ceux utilisés par le code. [Pyrefly](toolkit.md) est présenté dans la section toolkit.
+
+Exemple :
+
+![Example of output](screenshots/type_checker.png)
+
+C'est particulièrement utile quand on utilise des fonctions que l'on ne connait pas ou que l'on n'est pas certains types de variables demandé par les arguments.
+
+Le type checker peut être ajouté à l'IDE pour pointer les erreurs en même temps que le code est écrit.
+
+
+### Linter - l'inspecteur des impôts
+
+***Il va fouiller chaque ligne de ton code à la recherche de la moindre erreurs. Tu peux rien lui cacher.***
+
+Le linter détecte les autres les erreurs et les mauvaises pratiques dans le code. [Ruff](toolkit.md) est présenté dans la section toolkit.  
+
+Il fait une analyse statique du code et met en valeur :
+- les variables définies et jamais utilisées
+- variables déclarées plusieurs fois
+- les imports impossibles, les imports manquant
+- les codes impossibles (par exemple du code après le `return` d'une fonction)
+
+Comme le type checker, le linter est le mieux utilisé avec l'IDE, comme un assistant discret qui t'indique tous les problèmes avec des petites vagues de couleur sous les erreurs.
+
+### formateur - le styliste
+
+***Le formateur s'occupe uniquement de la forme. On l'a embauché parce qu'il est à cheval sur les règles.***
+
+Il réécrit le code (mais il ne peut pas en changer le sens) pour qu'il suive les standards de Python. Ainsi pas besoin de faire l'effort d'aérer le code, de respecter les indentations, de supprimer les lignes vides inutiles...  
+En plus d'un code 'plus beau', un code standardisé visuellement est plus simple à lire par pour tous car on a l'habitute de voir ces silhouettes de blocs de code.
+
+Un des règles les plus importantes et la longueur maximum des lignes, qui assure que le code est toujours lisible en entier sans déborder hors de l'écran sur la droite, par exemple pour les petits écrans, ou pour les screenshots...
+
+Le formateur est aussi intégré dans l'IDE. On le configure par défaut pour qu'il run à chaque fois que le code est sauvegardé. Tu est donc à un "ctrl-s" d'un beau script.
+
+[Ruff](toolkit.md) est présenté dans la section toolkit. 
+
+<details>
+<summary>Et pour R ?</summary>
+
+- R n'intègre pas les types dans sa syntaxe et ne peut donc pas utiliser un type checker comme Python.
+- Le linting sur R est fait par [lintr](https://lintr.r-lib.org/), qui s'intègre dans l'IDE. Mais n'a pas le niveau de contrôle des erreurs et de performances de Ruff.
+- R a depuis peu un super formateur : [Air](https://tidyverse.org/blog/2025/02/air/), écrit en Rust, c'est le jumeaux du formateur de Ruff pour R.
+
+</details>
+
+## Class et def
+
+### Classes avec class
+
+> Avant toutes choses : comprendre les classes est utile, mais tu ne seras probablement pas amené à en écrire souvent.
+
+Pour comprendre ce qu'est une classe en Python, un peu de contexte :
+
+Il y a grossièrement 2 type de programmation :
+- programmation fonctionnelle, on manipule plutôt des fonctions (comme dans R)
+- programmation orientée objet (POO), on manipule plutôt des objets (comme avec C++)
+
+Python est un langage généraliste avec un écosystème très large et qui peut-être bien loin des data sciences. Il intègre donc les 2 types de programmations. 
+
+<details>
+<summary>Qui utilise plutôt la programmation orientée objet dans Python ?</summary>
+
+- Développeur web
+- Développeur d'application
+- Développeur d'API  
+- Développeur de librairies
+
+</details>
+
+C'est la raison pour laquelle, si tu codes en Python, tu vas rencontrer des concepts de programmation orientée objet que tu n'as jamais vu sur R (ou sans t'en rendre compte), car ils sont plutôt utilisés par les développeurs de packages.
+
+A la différence de la fonction donnée par `def()` que tu connais déjà, les objets Python sont donnés par `class`.
+
+En 2 mots, `class` est un moule qui définit 2 choses :
+- les attributs de l'objet (les données portées par l'objet)
+- les méthodes (des fonctions qui appartiennent à l'objet)
+
+Une classe Python ressemble à ça :
+
+```python
+class Animal:
+    def __init__(self, nom, espece):   # constructeur, obligatoire
+        self.nom = nom                 # attribut
+        self.espece = espece
+
+    def presenter(self):               # méthode
+        print(f"Je suis {self.nom}, un {self.espece}")
+
+# Utilisation
+chat = Animal("Mimi", "chat")         # on crée une instance
+chat.presenter()                      # seules les instances de 'Animal' peuvent utiliser la méthode 'presenter()'
+-> Je suis Mimi, un chat
+```
+
+<details>
+<summary>Comparatif entre la syntaxe Python et R qui reflète cette différence de langage</summary>
+
+```python
+# La syntaxe de Python utilise beaucoup les méthodes :
+df.head() # <- le '.' indique une méthode, head() est une méthode de l'objet df
+```
+Dans le bloc du ci-dessus df est un dataframe crée avec Pandas.  
+On a donc instancié df à partir de l'objet DataFrame de Pandas :
+```python
+import pandas as pd
+
+df = pd.DataFrame(data={"col1": [1, 2], "col2": [3, 4]}) # ici pd.DataFrame() n'est pas une fonction mais une instance de la classe. Orentation objet
+```
+
+```python
+# Quelque part dans le code source de Pandas, DataFrame est déclaré avec un bloc comme :
+class DataFrame:
+    ...
+```
+
+Sur R :
+
+```r
+# Sur R on interagît plutôt avec des fonctions qu'avec des objets. On applique une fonction sur un objet alors que Python prend un objet et lui applique une méthode associée.
+# Si on prend le même df, pour voir les 5 premières lignes on ferait :
+head(df)        # En R de base
+
+df |>
+  head()        # En R de Tidyverse
+```
+`head()` n'est pas une fonction exclusive à la classe de df, mais une fonction qui **consomme** un objet comme df (là est une des différences entre Python et R)
+
+Sur R, une grande partie des data sciences est structurée autour du Tidyverse ce qui renforce la compatibilité entre les fonctions des packages.
+L'acteur principal du Tidyverse est le dataframe (data.frame ou tibble) et tous les packages du Tidyverse sont conçus pour manipuler ce type d'objet avec des conventions communes. Il est donc simple de développer des fonctions qui consomment un dataframe plutôt que de définir l'objet dataframe et de lui ajouter des méthodes comme Python le fait.
+
+Un très bon exemple est `ggplot2`, qui prend un dataframe en input alors qu'il retourne un plot. Sous le capot, `ggplot2` utilise la programmation orientée objets (pour gérer les couches par exemple) mais l'utilisateur lui utilise simplement les fonctions.
+
+</details>
+
+### Fonctions avec def
+
+def() est le mot clef pour écrire une fonction.
+
+```python
+def bonjour(argument1: int, argument2: str) -> tuple[int, str]:    # Cette ligne est la Signature de la fonction. A gauche de la flèche, les inputs, à droite les outputs
+    """
+    Ici c'est le docstring pour expliquer la fonction.
+    La convention pour détailler les arguments et ce que la fonction retourne est :
+    Args:
+        argument1: int est le premièr argument
+        argument2: str est le deuxième argument
+        
+    Return:
+        nombre, texte: tuple[int, str] est un tuple avec un nombre et un texte
+    """
+    nombre = argument1 * 2
+    texte = f"bonjour {argument2}"
+    
+    return nombre, texte
+```
+
+## Bonne pratiques de Python
+
+- Import
+
+Contrairement à R, on détaille chaque élements importé quite à avoir 50 lignes d'imports en haut du script.
+
+```python
+# ⚠️ mauvaise pratique, importe tout ! crée des conflits et rend le code illisible
+from sklearn import *
+```
+
+```python
+# ✅ Bonne pratique :  On importe uniquement ce dont on a besoin. Le linter indiquera les imports inutilisés
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+```
+
+L'import explicite rend immédiatement visible d'où vient chaque outil utilisé dans le code.
+
+**Utiliser des alias**
+
+Les packages de data sciences aiment particulièrelent les alias, qui sont devenus des conventions universelles. Les respecter rend le code lisible par n'importe quel utilisateur de Python :
+```python
+import numpy as np
+import pandas as pd
+import polars as pl
+import matplotlib.pyplot as plt
+import seaborn as sns
+...
+```
+
+En dehors de ces conventions établies, éviter les alias arbitraires, ils ajoutent une couche mentale inutile pour quiconque lit le code.
+
+- Noms :
+
+| Type | Convention d'écriture | Exemple |
+| --- | --- | --- |
+| Fonction | minuscules avec underscores | `def preprocess_data():` |
+| Classe | PascalCase | `class LegalReports:` |
+| Constante | MAJUSCULES avec underscores | `API_KEY = ''` |
