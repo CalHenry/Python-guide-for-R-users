@@ -227,52 +227,26 @@ Notebooks :
 </details>
 
 
-
-
-
 ## Pour aller plus loin avec le terminal (optionel)
 
 Le terminal d'origine est sobre et moche. Texte blanc sur fond noir.  
-Le terminal intégré à l'IDE c'est exactement la même fenêtre mais dans l'éditeur.  
-Il est parfaitement fonctionnel et remplit sa fonction.  
+Le terminal intégré à l'IDE est exactement la même fenêtre mais dans l'éditeur.  
+Il est parfaitement fonctionnel mais il donne pas envie.  
 
 Il est possible qu'un jour, à force de passer du temps dans ce rectangle noir, tu ais envie de couleurs et de plus d'ergonomie. Le terminal est extensible sans limites et de nombreux logiciels existent justement pour rendre cette expérience plus agréable.
 
-> Sans faire un cours d'histoire sur le terminal, il faut savoir que c'est encore l'outil de travail principal de certains développeurs de logiciels (on peut tout faire dans le terminal). C'est eux qui ont développé les logiciels pour améliorer l'expérience dans le terminal et il est possible de le rendre plus performant, beau et très agréable à utiliser.
-
 Dans cette sous section, je présente quelques améliorations basiques, pour rendre l'expérience du terminal meilleure. Ces outils vont aussi améliorer le terminal intégré dans l'IDE.
 
-
+- [Tldr](https://github.com/tealdeer-rs/tealdeer) : Explique une commande avec des exemples simples et concrêt (suffit souvent à se débloquer et éviter de devoir aller dans la doc)
 - [Bat](https://github.com/sharkdp/bat) : Remplacement de `cat` avec synthax highlighting
 
 <details>
-<summary>Exemple minimaliste de pyproject.toml</summary>
+<summary>bat vs cat</summary>
 
-```sh
-$ bat pyproject.toml
-─────┼───────────────────────────────────────────────
-     │ File: pyproject.toml
-─────┼───────────────────────────────────────────────
-   1 │ [project]
-   2 │ name = "m-guide"
-   3 │ version = "0.1.0"
-   4 │ description = "Add your description here"
-   5 │ readme = "README.md"
-   6 │ requires-python = ">=3.12"
-   7 │ dependencies = []
-─────┴───────────────────────────────────────────────
-```
+![bat](screenshots/bat.png)
 
-```
-$ cat pyproject.toml
-[project]
-name = "m-guide"
-version = "0.1.0"
-description = "Add your description here"
-readme = "README.md"
-requires-python = ">=3.12"
-dependencies = []
-```
+![cat](screenshots/cat.png)
+
 </details>
 
 - [Eza](https://eza.rocks/) : Remplacement de "ls", plus fonctionalités et des couleurs
