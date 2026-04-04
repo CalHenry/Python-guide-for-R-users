@@ -185,3 +185,21 @@ Si tu utilise UV ou Pixi, tu va trouver un [Lockfile](https://docs.astral.sh/uv/
 Ce fichier est ce qui rend le projet reproductible. C'est à partir de lui que l'on sait quelles versions de quels packages installer, et ce selon la configuration (OS, version de Python).   
 C'est un snapshot des dépendances du projet.
 Le lock file est gérer par le UV ou Pixi et on ne doit pas le modifier directement.
+
+## Modules
+
+Les modules Python sont des extensions intégrées au langage, constituant la *bibliothèque standard*. Contrairement aux bibliothèques externes, qui doivent être installés, ces modules sont déjà inclus avec Python. Pour les utiliser, il suffit de les importer dans ton code.
+
+Voici des modules que va obligatoirement utiliser :
+```python
+import os             # <- intéragir avec le système d'exploitation
+import json           # <- lire et écrire des fichiers json
+import datetime       # <- toutes les variables et fonctions temporelles
+import subprocess     # <- run des commandes shell depuis Python
+import re             # <- regex module
+import random         # <- pseudo-random number generator
+import pathlib        # <- configurer les Paths
+...
+```
+
+Tu peux retrouver la liste complète dans la [documentation officielle](https://docs.python.org/3/library/index.html).
