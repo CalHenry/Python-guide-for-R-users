@@ -53,7 +53,7 @@ command --help
 - **mkdir** : crée un dossier (mkdir data/)
 
 ### Développement
-- git (voir le chapitre sur Git)
+- git (cf [chapitre sur Git](git.md))
 - positron (avec `positron .` ouvre l'IDE sur le dossier actuel)
 
 ### Spécifique à python/ data sciences

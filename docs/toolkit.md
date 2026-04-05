@@ -69,7 +69,7 @@ uv run <file.py>
 <details>
 <summary><a href="https://pixi.prefix.dev/latest/" target="_blank">Pixi (gestionnaire d'environement pour conda)</a></summary>
 
-Pixi est présenté dans la section sur les gestionnaires d'environements.
+Pixi est présenté en détails [ici](python.md).
 
 Commandes les plus utiles de Pixi
 
@@ -107,7 +107,7 @@ pixi run <command> # ex : pixi run python <file.py>
 
 Ruff est LE formatter de Python, extrèmement rapide et très bien intégré/ supporté par les IDE.  
 
-Je recommande d'utiliser Ruff avec l'IDE. Chaque fois que tu sauvegarde ton script, ruff le formatte. Positron utilise Ruff par default (normalement rien à configurer).
+Je recommande d'utiliser Ruff avec l'IDE. Chaque fois que tu sauvegarde ton script, ruff le formatte. Positron utilise Ruff par defaut.
 
 Tu aussi peux utiliser Ruff comme un outil à part à l'aide du terminal.
 ```sh
@@ -126,7 +126,7 @@ Comme pour Ruff, Pyrefly est le type checker par défault de Positron.
 
 </details>
 
-[En savoir plus sur les code formatter/ code linters et type checker](https://github.com/) # `LINK TO gh PAGE`
+[En savoir plus sur les formateur de code, linters de code et les type checker](coder_python.md)
 
 
 ## Librairies Python pour aider la transition depuis R
@@ -141,9 +141,9 @@ Datasets :
 
   ```r
   # dplyr
-  df %>%
-    filter(mpg > 20) %>%
-    select(cyl, mpg) %>%
+  df |>
+    filter(mpg > 20) |>
+    select(cyl, mpg) |>
     mutate(kpl = mpg * 0.425)
   ```  
   
@@ -165,11 +165,11 @@ Datasets :
 
 Data Viz :
 - [Seaborn](https://seaborn.pydata.org/) - Seaborn est une sourcouche de Matplotlib, on utilise les deux librairies ensemble. API moins rugeuse que Matplotlib pour les utilisateurs venant de R. Il permet juste de mieux et plus facilement exprimer le graphique, ce qui est souvent difficile avec Matplotlib en venant de ggplot2.
-- [Plotnine](https://plotnine.org/) - ggplot2 adapté pour Python (synthax similaire, pratique si on vient de R).
-- [Great Tables](https://posit-dev.github.io/great-tables/articles/intro.html) : gt mais sur Python.
+- [Plotnine](https://plotnine.org/) - ggplot2 adapté pour Python (synthaxe similaire, pratique si on vient de R).
+- [Great Tables](https://posit-dev.github.io/great-tables/articles/intro.html) : package gt de R mais sur Python.
 
 Notebooks :
-  - [Marimo](https://marimo.io/) - Notebook pur Python, réactif, riche et moderne. `LINK TO NB PAGE`
+  - [Marimo](https://marimo.io/) - Notebook pur Python, réactif, riche et moderne. [Détails ici](notebooks.md).
     
     
     
@@ -177,12 +177,12 @@ Notebooks :
 (uniquement les packages principaux, les plus utilisés, les plus populaires ou les plus utiles venant de R)
 
 ### Scientifique
-- [Numpy](https://numpy.org/): implémentation pour python des vecteurs (même logique que R, tout est un vecteur (array en numpy))
+- [Numpy](https://numpy.org/): implémentation pour Python des vecteurs (même logique que R, tout est un vecteur (array en numpy))
 - [Scipy](https://scipy.org/) : librairie de statistique, nombreux algorithmes prêt à être utilisés (construit par dessus numpy)
 - [Statsmodels](https://www.statsmodels.org/stable/index.html) : librairie d'algorithmes qui reprend l'interface de formule de R.
 
 ### Dataframe
-- [Pandas](https://pandas.pydata.org/docs/) : librairie la plus populaire, la plus connue et la plus utilisée (construit par dessus numpy)
+- [Pandas](https://pandas.pydata.org/docs/) : librairie la plus populaire, la plus connue et la plus utilisée pour les dataframes (construit par dessus numpy)
 - [Polars](https://docs.pola.rs/) : API plus expréssive, très performant, possède un mode lazy
 
 ### Machine Learning
@@ -198,11 +198,11 @@ Notebooks :
 
 ### Data viz et applications
 - [Matplotlib](https://matplotlib.org/) & [Seaborn](https://seaborn.pydata.org/) : Duo pour la dataviz
-- [Streamlit](https://streamlit.io/) : Rshiny mais pour python
+- [Streamlit](https://streamlit.io/) : Rshiny mais pour Python
 
 ### NLP
 - [Spacy](https://spacy.io/) : pipelines complets et modulaires de NLP. Très utilisé dans l'industrie et en production
-- [NLTK](https://www.nltk.org/) : librairie complète de NLP. Facile à utiliser. Très utilisée dans la recherche
+- [NLTK](https://www.nltk.org/) : librairie complète de NLP. Facile à utiliser. Très utilisé dans la recherche
 
 ### Autres
 - [FastAPI](https://fastapi.tiangolo.com/) : Faire des API performante, facile à prendre en main.
@@ -215,14 +215,14 @@ Notebooks :
 - [Pytest](https://docs.pytest.org/en/stable/) : standard pour écrire des tests. 100% compatible avec les modules de testing de Python.
 
 ### Web scraping
-- [Beautiful soup](https://beautiful-soup-4.readthedocs.io/en/latest/) : pour parser HTML et XML. Ne prend pas en charge le JavaScript.
 - [Scrapy]() : Framework complet de scraping. Ne supporte pas le JavaScript.
+- [Beautiful soup](https://beautiful-soup-4.readthedocs.io/en/latest/) : pour parser HTML et XML. Ne prend pas en charge le JavaScript.
 - [Playwright](https://playwright.dev/python/docs/intro) : librairie d'automatisation de navigateur web et de scraping de pages dynamiques (les sites chargés en JavaScript).
 
 ### AI
 - [LangChain](https://docs.langchain.com/oss/python/langchain/overview) : Framework IA le plus utilisé
-- [Pydantic-ai] : Framework IA qui intègre le type safety et le data validation au coeur de son design. Parfait pour développer des solutions propres et robustes.
-- [Ollama](https://docs.ollama.com/), [LMStudio](https://lmstudio.ai/docs/python) et [vLLM](https://vllm.ai/) : "inference and serving engines" pour utiliser des LLM en local. Ils servent à démarer un serveur local pour connecter l'inférence du LLM. vLLM est plus puissant et la plus complexe. LMStudio permet de facilement utilisé des modèles MLX (pour les puces Apple)
+- [Pydantic-ai](https://ai.pydantic.dev/) : Framework IA qui intègre le type safety et la data validation au coeur de son design. Parfait pour développer des solutions propres et robustes.
+- [Ollama](https://docs.ollama.com/), [LMStudio](https://lmstudio.ai/docs/python) et [vLLM](https://vllm.ai/) : "inference and serving engines", pour utiliser des LLM en local. vLLM est plus puissant et plus complexe. LMStudio permet de facilement utiliser des modèles MLX (pour les puces Apple).
 
 </details>
 

@@ -50,7 +50,7 @@ dict[str, int]
 
 
 # On peut exprimer des conditions sur les types
-def trouver(id: int) -> str | None:  # str ou None - ici, on utilise l'opérateur | pour 'ou'
+def trouver(id: int) -> str | None:  # str ou None - ici, on utilise l'opérateur '|' pour 'ou'
     ...
 
 from typing import Literal # le module typing contient les types plus complexes
