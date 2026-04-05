@@ -2,8 +2,8 @@
 
 
 ## Python binary
-- Le Python installé est un ***interpréteur***. Il compile le script en bytecode (.pyc), puis la machine virtuelle de python l'exécute.  
-- On peut avoir plusieurs versions de python installées (Python 3.9, Python3.12,...)
+- Le Python installé est un ***interpréteur***. Il compile le script en bytecode (.pyc), puis la machine virtuelle de Python l'exécute.  
+- On peut avoir plusieurs versions de Python installées (Python 3.9, Python3.12,...)
 
 
 ## Les environnements virtuels
@@ -12,18 +12,18 @@
 Qu'est-ce que c'est ?
 
 > Logiciel qui gère pour nous les dépendances du projet. Plus particulièrement, il gère pour nous la compatibilité entre les packages d'un projet (installant les bonnes versions).  
-La gestion des packages dans l'écosystème python a toujours été catastrophique comparé à R. Des dizaines de gestionnaires on vu le jour, chacun corrigeant un des problèmes. Aujourd'hui on la chance d'avoir enfin des outils très performant et enfin complet, ce qui fait que tu ne devrais pas trop souffrir !   
+La gestion des packages dans l'écosystème Python a toujours été catastrophique comparé à R. Des dizaines de gestionnaires ont vu le jour, chacun corrigeant un des problèmes. Aujourd'hui, ont la chance d'avoir enfin des outils très performants et complet, ce qui fait que tu ne devrais pas trop souffrir !   
 UV est le gestionnaire pour Python qui change tout. Pixi pour les utilisateurs de conda.
 
 
 Pourquoi est-ce qu'on s'embête à créer des environnements virtuels ?  
-Pourquoi est-ce qu'on installe pas les packages sur le python de l'ordinateur et c'est tout ?
+Pourquoi est-ce qu'on n'installe pas les packages sur le Python de l'ordinateur et c'est tout ?
 
 -> Problèmes de dépendances et besoin d'isoler les versions des packages.
 
 **On ne peut pas avoir plusieurs versions d'une même librairie installées au même endroit.**  
 
-Concrètement quand un package est installé il se trouve dans un dossier 
+Concrètement quand un package est installé, il se trouve dans un dossier 
 ```sh
 site-packages/
 ├── numpy/                  ← code
@@ -31,7 +31,7 @@ site-packages/
 ```
 Si j'installe numpy 2.0, les deux dossiers seront remplacés par la version 2.0 du package.  
 
-Un environnement virtuel c'est un nouveau dossier, indépendant, qui peut recevoir un autre dossier numpy.
+Un environnement virtuel, c'est un nouveau dossier, indépendant, qui peut recevoir un autre dossier numpy.
 
 ```sh
 project_a/.venv/lib/python3.12/site-packages/numpy/   ← v1.24
@@ -39,23 +39,22 @@ project_b/.venv/lib/python3.12/site-packages/numpy/   ← v2.0
 ```
 
 -> Chaque version à un chemin différent et elles sont donc isolée.   
--> On résoult les problèmes de dépendances, impossible autrement d'avoir 2 projets qui utilisent 2 versions différentes du même package
+-> On résout les problèmes de dépendances, impossible autrement d'avoir deux projets qui utilisent deux versions différentes du même package
 
 Chaque projet doit avoir son environnement virtuel dédié.
 
 ## Comment ça fonctionne à l'intérieur
 
-> Pour comprendre pourquoi on crée un environnement par projet et pas un seul global, il faut comprendre ce qui se passe concrètement.
+> Pour comprendre pourquoi on crée un environnement par projet et pas un seul global, il faut comprendre ce qui se passe réellement.
 
-C'est principalement une histoire de chemins (Paths).  
-Chaque version à un chemin différent.  
+C'est principalement une histoire de chemins (Paths). Chaque version à un chemin différent.  
 
-Si les environnements virtuels sont des dossiers différents, est-ce que je télécharge le même package à chaque fois (duplication des fichiers et utilisation inutile du disque) ?  
--> Oui avec pip et venv, Non avec uv.
+Si les environnements virtuels sont dans des dossiers différents, est-ce que je télécharge le même package à chaque fois (duplication des fichiers et utilisation inutile du disque) ?  
+-> Oui avec pip et venv, non avec uv.
 
-pip ne sait pas si le package est déjà installé sur la machine, alors il le réinstalle. -> pas opti.
+**pip** ne sait pas si le package est déjà installé sur la machine, alors il le réinstalle. -> Duplication d'installations (qui peut finir par peser sur le disque)
 
-uv change ça:
+**uv** change ça :
 - les packages sont installés dans un seul dossier (cache)
 - au lieu de réinstaller, il relie avec un **hardlink** le dossier du cache avec le dossier de l'environnement.
 
@@ -111,29 +110,29 @@ UV c'est l'outil qui fait enfin consensus dans la communauté Python. Qu'est-ce 
 
 ## Conda
 
-Conda est un gestionnaire de packages et d'environnements. A la base pour les utilisateurs de Python, il sert en fait au projets qui utilisent plusieurs languages en même temps. 
-On s'en sert particulièrement dans le milieu académique et en biologie car de nombreux packages spécifiques à ces milieux sont accessibles avec conda pour différents languages.
+Conda est un gestionnaire de packages et d'environnements. A la base pour les utilisateurs de Python, il sert en fait au projets qui utilisent plusieurs langages en même temps. 
+On s'en sert particulièrement dans le milieu académique et en biologie, car de nombreux packages spécifiques à ces milieux sont accessibles avec conda pour différents langages.
 
-Conda c'est aussi un dépôt de packages (python, R, julia, C, C++).  
-- Pour un utilisateur de python : télécharge et gère les dépendances d'autres languages. Nombreux sont les packages python qui sont construit par dessus des packages écrit en C, C++ ou Fortran pour les performance (très courant pour les packages scientifiques. Les packages R sont d'ailleurs souvent basé sur les mêmes librairies). Conda assure que l'installation se fait correctement (là où pip installe juste la partie python et ne gère pas les dépendances dans d'autres languages)
+Conda c'est aussi un dépôt de packages (Python, R, Julia, C, C++...).  
+- Pour un utilisateur de Python : télécharge et gère les dépendances d'autres langages. Nombreux sont les packages Python qui sont construits par dessus des librairies de C, C++ ou Fortran pour les performances (très courant pour les packages scientifiques. Les packages R sont d'ailleurs souvent basés sur les mêmes librairies). Conda assure que l'installation se fait correctement (là où pip installe juste la partie Python et ne gère pas les dépendances dans d'autres langages)
 
 
 <details>
 <summary>Les différentes déclinaisons de conda</summary>
 
-- Anaconda :  Distribution d'Anaconda (entreprise) de conda, avec de nombreux packages pré-installés (~3GB de packages d'après wikipédia quand même !)
+- Anaconda :  Distribution d'Anaconda (entreprise) de conda, avec de nombreux packages pré-installés (~3GB de packages d'après Wikipédia quand même !)
 - miniconda : version allégée de conda
-- conda-forge : dépôt communaitaire de packages pour conda. Indépendant de Anaconda (c'est la raison pour laquelle il existe, autrement, si Anaconda ferme et supprime sont dépôt on perd tous les packages conda et le moyen d'y accéder)
+- conda-forge : dépôt communaitaire de packages pour conda. Indépendant de Anaconda (c'est la raison pour laquelle il existe, autrement, si Anaconda ferme et supprime son dépôt, on perd tous les packages conda et le moyen d'y accéder)
 - miniforge : alternative à miniconda mais utilise uniquement les packages de conda-forge (encore une fois pour l'indépendance d'Anaconda)
 </details>
 
 ## Pixi
-Et Pixi, c'est quoi ?
+Et Pixi, qu'est-ce que c'est ?
 
 Pixi c'est le mélange de conda-forge et UV :
 - Destiné aux utilisateurs de conda (remplace conda, 100% compatible)
-- Intègre les standards de développement Python (pyproject, environnement virtuel à la racine du dossier du projet, ...)
-- Gère en même temps les packages issues de PyPI et de conda, meilleur des 2 mondes entre UV et conda (peut installer des packages PyPI quand ils n'existent pas sur conda, ainsi on utilise un seul gestionnaire, là où avant il fallait soi-même gérer les dépendances entre conda et PyPI).
+- Intègre les standards de développement Python (pyproject, environnement virtuel à la racine du dossier du projet...)
+- Gère en même temps les packages issues de PyPI et de conda, meilleur des deux mondes entre UV et conda (peut installer des packages PyPI quand ils n'existent pas sur conda, ainsi on utilise un seul gestionnaire, là où avant, il fallait soi-même gérer les dépendances entre conda et PyPI).
 - plus rapide que conda
 
 ## Recommandations
@@ -157,7 +156,7 @@ c'est le fichier qui déclare ton projet et ses dépendances, l'équivalent du `
 <details>
 <summary>Exemple minimaliste de pyproject.toml</summary>
 
-[pyproject.toml](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/) est un standard **officiel** de l'écosystème Python et est supporté par les outils moderne
+[pyproject.toml](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/) est un standard **officiel** de l'écosystème Python et est supporté par les outils modernes
 
 ```toml
 [project]
@@ -192,7 +191,7 @@ Les modules Python sont des extensions intégrées au langage, constituant la *b
 
 Voici des modules que va obligatoirement utiliser :
 ```python
-import os             # <- intéragir avec le système d'exploitation
+import os             # <- interagir avec le système d'exploitation
 import json           # <- lire et écrire des fichiers json
 import datetime       # <- toutes les variables et fonctions temporelles
 import subprocess     # <- run des commandes shell depuis Python
