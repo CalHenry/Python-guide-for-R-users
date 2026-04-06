@@ -8,7 +8,50 @@ Cette section présente différents aspects du code Python :
 
 - Élements de syntaxe
 
-## Type hints
+## Syntaxe
+
+### Indentation
+
+Il est impossible de parler de la syntaxe de Python sans aborder l'indentation.
+
+L'Indentation en Python sert à définir les bloc de codes (fonctions, classes, for loop, if statements,...). Python attends que l'indentation soit la même pour tous les éléments d'un bloc.
+
+> Ne pas respecter l'indentation entrainera une `#!py3 IndentationError` lors de l'exécution.
+
+Elle sert à définir les blocs de codes (à la différence de R, qui utilise plutôt les paranthèses et où l'indentation sert uniquement à la lisibilité du code). 
+
+La lecture du code passe par l'indentification des niveaux d'indentation. Dès que le niveau change, je rentre ou je sors d'un bloc de code.
+
+??? note "Exemple" 
+    
+    Dans cet exemple, tout le code est contenu dans un while loop (1 niveau d'indentation).   
+    À l'intérieur du loop, 3 if statements qui ajoutent un niveau d'indentation uniquement pour le code du if statement.
+    
+    ```python {hl_lines="1 5 12 18"}
+    while True:
+        paginated_query = f"{query} LIMIT {limit} OFFSET {offset}"
+        page = pl.read_database(paginated_query, conn)
+    
+        if page.is_empty():
+            break
+    
+        pages.append(page)
+        fetch_count += 1
+        print(f"Fetched {offset + len(page)} rows...")
+    
+        if len(page) < limit:
+            break
+    
+        offset += limit
+    
+        # Sleep every 4 fetches to respect the rate limit
+        if fetch_count % 4 == 0:
+            print("Rate limit pause: 70 seconds...")
+            time.sleep(70)
+    ```
+    
+
+### Type hints
 
 En 2 mots : On précise le type attendu de l'élément avec la syntaxe "élément: type"
 ```python
@@ -102,6 +145,52 @@ def salut(nom: str) -> str:
   from typing import List, Dict, Tuple
   ```
     
+### List comprehension
+
+Les list comprehensions sont de la syntaxe Python pure. C'est juste une autre manière d'écrire les boucles. Et les boucles sont très présentes dans Python, bien plus que dans R.
+
+En fait, les boucles (et list comprehensions), sont le moyen pour Python d'effectuer les opérations qui sont vectorisées dans R (*c'est vrai pour Python pur, NumPy et Pandas retrouvent la vectorisation*). Python doit itérer au-dessus de chaque élément. De ce point de vu là, R est bien plus optimisé.
+
+```python
+# version for loop
+evens = []
+for x in range(10):
+    if x % 2 == 0:
+        evens.append(x)
+
+# version list 
+evens = [x for x in range(10) if x % 2 == 0]
+
+# % est l'opérateur Python pour 'modulo'
+```
+
+Comment décomposer les listes comprehensions : 
+
+/// admonition | Squelette
+    type: information
+    
+ `#!py3 [expression for item in iterable if condition]`
+///
+
+0. Ignorer la première variable (pour l'instant): [==x== for x in range(10) if x % 2 == 0]  
+1. Identifier le for loop : [x ==for x in range(10)== if x % 2 == 0]  
+2. Identifier la condition : [x for x in range(10) ==if x % 2 == 0==]  
+3. Combiner **1.** et **2.**. Ensuite, on rajoute **0.** qui nous indique ce qui est extrait de la liste (pour devenir "events" dans notre exemple).
+
+Les listes comprehensions sont partout dans Python, car c'est une syntaxe élégante pour exprimer les boucles simples. De plus, elles sont plus performantes que les boucles (optimisées par l'interpréteur Python). Deux raisons d'essayer de s'en servir !
+
+R ne connait pas les listes comprehensions puisque tout est un vecteur dans R donc il est naturel de paralléliser les opérations et ainsi ne pas avoir à itérer sur chaque éléments. L'équivalent pour R serait la famille `apply(), sapply(), lapply()...`, mais l'approche est différente, parce qu'on on applique une fonction.
+
+La list comprehension n'est pas la seule, c'est la plus utilisée, mais il existe aussi :
+
+- les *dictionary comprehensions* (`#!py3 {k: v for k, v in ...}`)
+ 
+- les *set comprehensions*
+
+- les *generator comprehensions*.   
+
+Ils fonctionnent tous avec la même logique et avec des syntaxes similaires.
+
 ## Type checker, Formateur et Linter
 
 **Trio de choc** pour écrire un code irréprochable.
@@ -327,3 +416,11 @@ def bonjour(argument1: int, argument2: str) -> tuple[int, str]:
     
     return nombre, texte
 ```
+
+Différences avec R : 
+
+**return obligatoire/ pas de return implicites** : En Python, il est impératif d'avoir le mot clés `#!py3 return`. Autrement la fonction ne renvoie rien (ou None par défaut). Cela diffère de R, qui retourne automatiquement la dernière expression évaluée dans la fonction, le `#!py3 return`de R étant donc souvent optionnel.
+
+** Retourne toujours qu'un seul objet** : même `#!py3 return a, b` retourne en fait un unique tuple constitué de a et b. Cela différe de R qui peut retourner **des** listes ou des vecteurs.
+
+**Pas de {} pour délimiter les blocs** : En Python, les blocs de code (comme les fonctions) sont définit par l'indentation. Contrairement à R qui utilise des paranthèses {}
