@@ -1,0 +1,32 @@
+site_name: Python guide for R users
+site_url: https://github.com/CalHenry/Python_guide_for_R_users
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.top
+    - content.code.copy
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.magiclink
+  - pymdownx.inlinehilite
+  - pymdownx.superfences          # code blocks inside admonitions etc.
+  - pymdownx.blocks.admonition    # note/warning/tip boxes
+  - pymdownx.details
+  - attr_list
+  - pymdownx.extra
+
+extra_css:
+  - stylesheets/extra.css
