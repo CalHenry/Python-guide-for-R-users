@@ -117,14 +117,12 @@ Conda c'est aussi un dépôt de packages (Python, R, Julia, C, C++...).
 - Pour un utilisateur de Python : télécharge et gère les dépendances d'autres langages. Nombreux sont les packages Python qui sont construits par dessus des librairies de C, C++ ou Fortran pour les performances (très courant pour les packages scientifiques. Les packages R sont d'ailleurs souvent basés sur les mêmes librairies). Conda assure que l'installation se fait correctement (là où pip installe juste la partie Python et ne gère pas les dépendances dans d'autres langages)
 
 
-<details>
-<summary>Les différentes déclinaisons de conda</summary>
+??? note "Les différentes déclinaisons de conda"
 
-- Anaconda :  Distribution d'Anaconda (entreprise) de conda, avec de nombreux packages pré-installés (~3GB de packages d'après Wikipédia quand même !)
-- miniconda : version allégée de conda
-- conda-forge : dépôt communaitaire de packages pour conda. Indépendant de Anaconda (c'est la raison pour laquelle il existe, autrement, si Anaconda ferme et supprime son dépôt, on perd tous les packages conda et le moyen d'y accéder)
-- miniforge : alternative à miniconda mais utilise uniquement les packages de conda-forge (encore une fois pour l'indépendance d'Anaconda)
-</details>
+    - Anaconda :  Distribution d'Anaconda (entreprise) de conda, avec de nombreux packages pré-installés (~3GB de packages d'après Wikipédia quand même !)
+    - miniconda : version allégée de conda
+    - conda-forge : dépôt communaitaire de packages pour conda. Indépendant de Anaconda (c'est la raison pour laquelle il existe, autrement, si Anaconda ferme et supprime son dépôt, on perd tous les packages conda et le moyen d'y accéder)
+    - miniforge : alternative à miniconda mais utilise uniquement les packages de conda-forge (encore une fois pour l'indépendance d'Anaconda)
 
 ## Pixi
 Et Pixi, qu'est-ce que c'est ?
@@ -145,7 +143,7 @@ Pixi c'est le mélange de conda-forge et UV :
 
 
 Je conseille de ne pas utiliser Pip car UV est simplement meilleur, ni Conda car Pixi est plus complet pour Python.
-
+j
 
 ## Fichiers important dans un projet Python
 
@@ -153,30 +151,27 @@ Je conseille de ne pas utiliser Pip car UV est simplement meilleur, ni Conda car
 
 c'est le fichier qui déclare ton projet et ses dépendances, l'équivalent du `DESCRIPTION` d'un package R. Il remplace les anciens `setup.py` et `requirements.txt`.
 
-<details>
-<summary>Exemple minimaliste de pyproject.toml</summary>
-
-[pyproject.toml](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/) est un standard **officiel** de l'écosystème Python et est supporté par les outils modernes
-
-```toml
-[project]
-name = "mon-projet"
-version = "0.1.0"
-description = "Une courte description"
-readme = "README.md"
-requires-python = ">=3.10"
-dependencies = [
-    "numpy>=1.24",
-    "pandas>=2.0",
-]
-
-[project.optional-dependencies]
-dev = [
-    "pytest>=7.0",
-    "black>=23.0",
-]
-```
-</details>
+??? note "Exemple minimaliste de pyproject.toml"
+    [pyproject.toml](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/) est un standard **officiel** de l'écosystème Python et est supporté par les outils modernes
+    
+    ```toml
+    [project]
+    name = "mon-projet"
+    version = "0.1.0"
+    description = "Une courte description"
+    readme = "README.md"
+    requires-python = ">=3.10"
+    dependencies = [
+        "numpy>=1.24",
+        "pandas>=2.0",
+    ]
+    
+    [project.optional-dependencies]
+    dev = [
+        "pytest>=7.0",
+        "black>=23.0",
+    ]
+    ```
 
 ### Lockfile
 Si tu utilise UV ou Pixi, tu va trouver un [Lockfile](https://docs.astral.sh/uv/concepts/projects/layout/#the-lockfile) (uv.lock ou pixi.lock) dans ton dossier (même concept que renv.lock).

@@ -9,7 +9,7 @@
 
 ## Modèle mental
 
-Git c'est comme un **photographe** qui prend des photos de ton projet à des moments précis.
+Git, c'est comme un **photographe** qui prend des photos de ton projet à des moments précis.
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
 │                        3 états de GIT                               │
@@ -40,7 +40,7 @@ Chaque **commit** est une photo horodatée de ton projet. Tu peux revenir à n'i
 Tu travailles ici              Backup & collaboration
 ```
 
-Git fonctionne **seul** sur ton ordi. GitHub est juste un cloud pour sauvegarder et partager ton travail. Il apporte ensuite des fonctionnalités pour le travail en équipe et la collaboration sur un même répo.
+Git fonctionne **seul** sur ton ordi. GitHub est juste un cloud pour sauvegarder et partager ton travail. Il apporte ensuite des fonctionnalités pour le travail en équipe et la collaboration sur un même repo.
 
 
 ## Git en pratique
@@ -113,7 +113,7 @@ To https://github.com/CalHenry/MBook.git
 ```
 
 **Lier un repo local à GitHub**  
-"Tu as déjà initié git sur ton dossier et tu veux le lier à un répo GitHub que tu viens de créer sur le site.
+"Tu as déjà initié git sur ton dossier et tu veux le lier à un repo GitHub que tu viens de créer sur le site.
 ```sh
 # Si le repo local existe déjà 
 $ git remote add origin https://github.com/user/monrepo.git
@@ -125,7 +125,7 @@ $ git push -u origin main
 "Tu veux ajouter une feature ou tester quelque chose"
 
 ```sh
-# Créer une branche avec "-c", change automatiquement à la branche créee
+# Créer une branche avec "-c", change automatiquement à la branche créée
 $ git switch -c newbranch
 Switched to a new branch 'newbranch'
 
@@ -149,44 +149,43 @@ $ git diff docs/git.md
 ## Concepts
 
 **.gitignore**
-Par défaut, Git suit tous les fichiers du dossier, or on veut ne veut pas tracker tous les fichiers de tout les dossiers.  
+Par défaut, Git suit tous les fichiers du dossier, or, on veut ne veut pas tracker tous les fichiers de tous les dossiers.  
 Par exemple le dossier `data/`, ou les informations secrètes (comme les clefs API), ou les fichiers que l'on ne veut pas voir sur GitHub.
 
 On utilise donc un fichier spécial **.gitignore** qui contient simplement les noms des dossiers et fichiers à ignorer pour git.
 
-<details>
-<summary>Exemple de .gitignore</summary>
+??? note "Exemple de .gitignore"
 
-```sh
-# manually added
-.env                   # <- secrets
-data/
-models/*               # <- '*' dit à git d'ignorer tout ce que contient models
-!models/*.py           # <- '!' = inverse - on n'ignore PAS les fichiers .py 
-!models/README.md      # <- on n'ignore pas le readme
-
-
-# Python-generated files
-__pycache__/
-*.py[oc]
-build/
-dist/
-wheels/
-*.egg-info
-
-# Virtual environments
-.venv
-```
-</details>
+    ```sh
+    # manually added
+    .env                   # <- secrets
+    data/
+    models/*               # <- '*' dit à git d'ignorer tout ce que contient models
+    !models/*.py           # <- '!' = inverse - on n'ignore PAS les fichiers .py 
+    !models/README.md      # <- on n'ignore pas le readme
+    
+    
+    # Python-generated files
+    __pycache__/
+    *.py[oc]
+    build/
+    dist/
+    wheels/
+    *.egg-info
+    
+    # Virtual environments
+    .venv
+    ```
 
 
 **Branches**
 Les branches (comme pour un arbre) permettent d'expérimenter sans casser le code principal (main). 
 On se détache de la branche principale. Il y a donc une branche active sur lequel on fait les commits, et les autres branches. 
-On peut changer de branche à tout moment et ainsi développer plusieurs partie du projet en même temps.
-Par exemple:
-Tout notre code se trouve dans 1 seul script, le projet grandit et ce n'est plus maintenable. On veut changer la structure du code.  
-Pour garder **main** intact (car cette version du projet est validé et fonctionne), on créer une branche. Dans cette branche on va créer de nouveaux scripts, répartir le code, gérer les imports,... On fais les commits dans la branche, on teste le code. Une fois validé, on fusionne (merge) dans main.
+On peut changer de branche à tout moment et ainsi développer plusieurs parties du projet en même temps.
+
+Par exemple :
+Tout notre code se trouve dans un seul script, le projet grandit et ce n'est plus maintenable. On veut changer la structure du code.  
+Pour garder **main** intact (car cette version du projet est validé et fonctionne), on crée une branche. Dans cette branche, on va créer de nouveaux scripts, répartir le code, gérer les imports,... On fait les commits dans la branche, on teste le code. Une fois validé, on fusionne (merge) dans main.
 
 ```
 ┌─────────────────────────────────────────┐
@@ -208,43 +207,42 @@ En pratique, quand tu changes de branche, Git met automatiquement à jour les fi
 
 ## Bonnes pratiques
 
-- Faire des commits atomiques : un commit = une seule modification logique. (Il vaut mieux beaucoup de commits simples que 1 commit avec 15 modifications réparties sur 4 fichiers)
+- Faire des commits atomiques : un commit = une seule modification logique. (Il vaut mieux beaucoup de commits simples qu'un commit avec 15 modifications réparties sur quatres fichiers)
 - Écrire des messages de commit explicites : "fix: corriger bug sur login" plutôt que "modif". (Tu peux t'aider de bannière qui oriente directement le thème du commit "fix:", "feat", file:"... )
-<details>
-<summary>Exemple de messages de commits pour data scientists</summary>
 
-Les messages de commits sont comme la documentation dans le code, ça peut paraitre évident, mais le toi dans 2 mois qui va devoir comprendre où tu as fais telle modif et surtout pourquoi, va te remercier. Lire un message de commit est bien plus rapide que devoir se plonger dans le code.
-
-```
-fix & file:
-
-fix:
-- update how Paths are written in config.py -> updates in the scripts
-that uses them
-- update the dataframe schema in build_dataset.py
-file:
-- merge.py can be run to merge the 2 datasets created by
-build_dataset.py and pipeline.py
-```
-
-```
-feat & fix
-
-fix: type checker complaints about Vector() of lancedb, fixed with
-Annotated
-feat: add doc_id as a parameter so the user can choose the document in
-the agent run function. doc_id is added to RAGDeps
-```
-
-```    
-refactor:
-
-new folder structure:
-- entry points in ./scripts/
-- ingestion pipeline in src/rag/ingestion/
-- query pipeline in src/rag/query
-```
-</details>
+??? note "Exemple de messages de commits pour data scientists"
+    
+    Les messages de commits sont comme la documentation dans le code, ça peut paraitre évident, mais le toi dans 2 mois qui va devoir comprendre où tu as fait telle modif et surtout pourquoi, va te remercier. Lire un message de commit est bien plus rapide que devoir se plonger dans le code.
+    
+    ```
+    fix & file:
+    
+    fix:
+    - update how Paths are written in config.py -> updates in the scripts
+    that uses them
+    - update the dataframe schema in build_dataset.py
+    file:
+    - merge.py can be run to merge the 2 datasets created by
+    build_dataset.py and pipeline.py
+    ```
+    
+    ```
+    feat & fix
+    
+    fix: type checker complaints about Vector() of lancedb, fixed with
+    Annotated
+    feat: add doc_id as a parameter so the user can choose the document in
+    the agent run function. doc_id is added to RAGDeps
+    ```
+    
+    ```    
+    refactor:
+    
+    new folder structure:
+    - entry points in ./scripts/
+    - ingestion pipeline in src/rag/ingestion/
+    - query pipeline in src/rag/query
+    ```
 
 - push régulièrement : Si c'est sur GitHub c'est en sécurité.
 - commit tant que c'est frais pour éviter d'oublier les raisons des changements
