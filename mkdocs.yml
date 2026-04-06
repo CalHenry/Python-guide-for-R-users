@@ -25,7 +25,8 @@ markdown_extensions:
   - pymdownx.magiclink
   - pymdownx.inlinehilite
   - pymdownx.superfences          # code blocks inside admonitions etc.
-  - pymdownx.blocks.admonition    # note/warning/tip boxes
+  - pymdownx.blocks.admonition    # callouts
+  - pymdownx.mark
   - pymdownx.details
   - attr_list
   - pymdownx.extra
