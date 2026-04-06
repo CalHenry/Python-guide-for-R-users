@@ -1,5 +1,6 @@
 site_name: Python guide for R users
-repo_url: https://github.com/CalHenry/Python_guide_for_R_users
+site_url: https://CalHenry.github.io/Python-guide-for-R-users
+repo_url: https://github.com/CalHenry/Python-guide-for-R-users
 
 # theme related ------
 theme:

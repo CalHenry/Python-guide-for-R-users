@@ -16,6 +16,10 @@ jobs:
 
       - uses: astral-sh/setup-uv@v5
 
-            - run: uv sync
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
 
-            - run: uv run mkdocs gh-deploy --force
+      - run: uv sync
+
+      - run: uv run mkdocs gh-deploy --force
