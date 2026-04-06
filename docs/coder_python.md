@@ -71,7 +71,7 @@ def salut(nom: str) -> str:
 ??? note "Exemple d'utilisation des types hints"
 
     ```python
-    from typing import TypedDict # TypeDict permet de définir un dictionnaire et le type de chacune des clefs
+    from typing import TypedDict # TypeDict permet de définir "forme" attendue d'un dictionnaire avec le type de chacune des clefs
     
     class ChunkResult(TypedDict):
         chunk_id: int
@@ -91,6 +91,17 @@ def salut(nom: str) -> str:
     - On sait ce que retourne la fonction et ce que contient chaque éléments de la liste retournée.
     - On pourra utiliser ChunkResult ailleurs dans le code et toujours savoir précisément ce qu'il doit contenir.
 
+??? warning "Type hints avant Python 3.9+"
+
+    Les types hints en minuscules présenté au dessus ne sont implémenté par Python que depuis la version 3.9.
+    
+    Pour Python 3.8 et versions antierieures, il faut importer les types depuis typing. 
+    
+    Tu peux faire la différence entre les 2 car la syntaxe de typing a des majuscules pour la première lettre alors que Python 3.9+ est uniquement en minuscule
+  ```python
+  from typing import List, Dict, Tuple
+  ```
+    
 ## Type checker, Formateur et Linter
 
 **Trio de choc** pour écrire un code irréprochable.
@@ -146,7 +157,57 @@ Le formateur est aussi intégré dans l'IDE. On le configure par défaut pour qu
     
     - R a depuis peu un super formateur : [Air](https://tidyverse.org/blog/2025/02/air/), écrit en Rust, c'est le jumeaux du formateur de Ruff pour R.
   
+## Bonne pratiques de Python
 
+- **Import**
+
+Contrairement à R, on détaille chaque élements importé quite à avoir 50 lignes d'imports en haut du script.
+
+```python
+# ⚠️ mauvaise pratique, importe tout ! crée des conflits et rend le code illisible
+from sklearn import *
+```
+
+```python
+# ✅ Bonne pratique :  On importe uniquement ce dont on a besoin. 
+# Le linter indiquera les imports inutilisés
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+```
+
+L'import explicite rend immédiatement visible d'où vient chaque outil utilisé dans le code.
+
+**Utiliser des alias**
+
+Les packages de data sciences aiment particulièrement les alias, qui sont devenus des conventions universelles. Les respecter rend le code lisible par n'importe quel utilisateur de Python :
+```python
+import numpy as np
+import pandas as pd
+import polars as pl
+import matplotlib.pyplot as plt
+import seaborn as sns
+...
+```
+
+En dehors de ces conventions établies, évite les alias arbitraires, ils ajoutent une couche mentale inutile pour quiconque lit le code.
+
+- **Noms** :
+
+Python suis une [convention](https://peps.python.org/pep-0008/#introduction) sur la manière d'écrire les différents éléménents :
+
+| Type | Convention d'écriture | Exemple |
+| --- | --- | --- |
+| Fonction | minuscules avec underscores | `#!py3 def preprocess_data():` |
+| Variables | minuscules avec underscores | `#!py3 df_round1_2026` |
+| Classe | PascalCase | `#!py3 class LegalReports:` |
+| Constante | MAJUSCULES avec underscores | `#!py3 API_KEY = "abc"` |
+
+/// admonition | Il y a des exceptions
+    type: warning 
+  
+En machine learning, on utilise `X`, `X_train`, `X_test`. Héritage des statiques qui écrit les matrices en majuscules pour les différencier des vecteurs ou des scalaires.  
+La variable expliquée (y), est elle gardée en minuscule (car c'est un vecteur).
+///
 
 ## Class et def
 
@@ -162,7 +223,7 @@ Il y a grossièrement 2 type de programmation :
 
 - programmation orientée objet (POO), on manipule plutôt des objets (comme avec C++)  
 
-Python est un langage généraliste avec un écosystème très large et qui peut-être bien loin des data sciences. Il intègre donc les 2 types de programmations. 
+Python est un langage généraliste avec un écosystème très large et qui peut-être bien loin des data sciences. Il supporte des paradigmes des 2 types de programmations. 
 
 ??? note "Qui utilise plutôt la programmation orientée objet dans Python ?"
 
@@ -266,55 +327,3 @@ def bonjour(argument1: int, argument2: str) -> tuple[int, str]:
     
     return nombre, texte
 ```
-
-## Bonne pratiques de Python
-
-- **Import**
-
-Contrairement à R, on détaille chaque élements importé quite à avoir 50 lignes d'imports en haut du script.
-
-```python
-# ⚠️ mauvaise pratique, importe tout ! crée des conflits et rend le code illisible
-from sklearn import *
-```
-
-```python
-# ✅ Bonne pratique :  On importe uniquement ce dont on a besoin. 
-# Le linter indiquera les imports inutilisés
-from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import train_test_split
-```
-
-L'import explicite rend immédiatement visible d'où vient chaque outil utilisé dans le code.
-
-**Utiliser des alias**
-
-Les packages de data sciences aiment particulièrement les alias, qui sont devenus des conventions universelles. Les respecter rend le code lisible par n'importe quel utilisateur de Python :
-```python
-import numpy as np
-import pandas as pd
-import polars as pl
-import matplotlib.pyplot as plt
-import seaborn as sns
-...
-```
-
-En dehors de ces conventions établies, évite les alias arbitraires, ils ajoutent une couche mentale inutile pour quiconque lit le code.
-
-- **Noms** :
-
-Python suis une [convention](https://peps.python.org/pep-0008/#introduction) sur la manière d'écrire les différents éléménents :
-
-| Type | Convention d'écriture | Exemple |
-| --- | --- | --- |
-| Fonction | minuscules avec underscores | `#!py3 def preprocess_data():` |
-| Variables | minuscules avec underscores | `#!py3 df_round1_2026` |
-| Classe | PascalCase | `#!py3 class LegalReports:` |
-| Constante | MAJUSCULES avec underscores | `#!py3 API_KEY = "abc"` |
-
-/// admonition | Il y a des exceptions
-    type: warning 
-    
-En machine learning, on utilise `X`, `X_train`, `X_test`. Héritage des statiques qui écrit les matrices en majuscules pour les différencier des vecteurs ou des scalaires.  
-La variable expliquée (y), est elle gardée en minuscule (car c'est un vecteur).
-///

@@ -96,13 +96,16 @@ Outils de l'écosystème pour coder en Python.
     
 ??? note "[Ruff (linter and formateur)](https://docs.astral.sh/ruff/)"
 
-    Ruff est LE formateur de Python, extrêmement rapide et très bien intégré/ supporté par les IDE.  
+    Ruff est LE formateur et linter de Python, extrêmement rapide et très bien intégré/ supporté par les IDE.  
+    
+    > Le formateur et le linter de Ruff sont en fait deux sous commandes distinctes, et tu peux n'utiliser que l'un ou l'autre.
     
     Je recommande d'utiliser Ruff avec l'IDE. Chaque fois que tu sauvegardes ton script, ruff le formate. Positron utilise Ruff par défaut.
     
     Tu peux également peux utiliser Ruff depuis le terminal.
     ```sh
-    ruff check <script.py>
+    ruff check <script.py>    # linter
+    ruff format <script.py>   # formateur
     # ou voir toutes les commandes
     ruff help
     ```
