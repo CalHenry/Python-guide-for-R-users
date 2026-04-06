@@ -152,6 +152,7 @@ j
 c'est le fichier qui déclare ton projet et ses dépendances, l'équivalent du `DESCRIPTION` d'un package R. Il remplace les anciens `setup.py` et `requirements.txt`.
 
 ??? note "Exemple minimaliste de pyproject.toml"
+
     [pyproject.toml](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/) est un standard **officiel** de l'écosystème Python et est supporté par les outils modernes
     
     ```toml

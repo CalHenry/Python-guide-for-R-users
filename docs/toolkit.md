@@ -228,10 +228,11 @@ Dans cette sous section, je présente quelques améliorations basiques, pour ren
 
 ??? note "bat vs cat"
     
-    ![bat](screenshots/bat.png)
+    ![light bat](screenshots/bat_light.png){.only-light}
+    ![dark bat](screenshots/bat_dark.png){.only-dark}
     
-    ![cat](screenshots/cat.png)
-
+    ![light cat](screenshots/cat_light.png){.only-light}
+    ![dark cat](screenshots/cat_dark.png){.only-dark}
 
 - [Eza](https://eza.rocks/) : Remplace de "ls", plus fonctionnalités et des couleurs
 

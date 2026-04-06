@@ -1,6 +1,7 @@
 site_name: Python guide for R users
-site_url: https://github.com/CalHenry/Python_guide_for_R_users
+repo_url: https://github.com/CalHenry/Python_guide_for_R_users
 
+# theme related ------
 theme:
   name: material
   palette:
@@ -29,4 +30,4 @@ markdown_extensions:
   - pymdownx.extra
 
 extra_css:
-  - stylesheets/extra.css
+  - css/extra.css
