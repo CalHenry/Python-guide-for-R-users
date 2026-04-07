@@ -172,10 +172,11 @@ Comment décomposer les listes comprehensions :
  `#!py3 [expression for item in iterable if condition]`
 ///
 
-0. Ignorer la première variable (pour l'instant): [==x== for x in range(10) if x % 2 == 0]  
-1. Identifier le for loop : [x ==for x in range(10)== if x % 2 == 0]  
-2. Identifier la condition : [x for x in range(10) ==if x % 2 == 0==]  
-3. Combiner **1.** et **2.**. Ensuite, on rajoute **0.** qui nous indique ce qui est extrait de la liste (pour devenir "events" dans notre exemple).
+0. Lire de droite à gauche
+1. Identifier la condition : [x for x in range(10) ==if x % 2 == 0==]  
+2. Identifier le for loop : [x ==for x in range(10)== if x % 2 == 0]  
+3. Combiner **1.** et **2.**. 
+4. Ensuite, on rajoute l'expression ([==x== for x in range(10) if x % 2 == 0]), qui nous indique ce qui est extrait de la liste (pour devenir "events" dans notre exemple). 
 
 Les listes comprehensions sont partout dans Python, car c'est une syntaxe élégante pour exprimer les boucles simples. De plus, elles sont plus performantes que les boucles (optimisées par l'interpréteur Python). Deux raisons d'essayer de s'en servir !
 
@@ -185,11 +186,9 @@ La list comprehension n'est pas la seule, c'est la plus utilisée, mais il exist
 
 - les *dictionary comprehensions* (`#!py3 {k: v for k, v in ...}`)
  
-- les *set comprehensions*
+- les *set comprehensions* (même syntaxe que la list comprehension avec `{}` à la place des `[]`)
 
-- les *generator comprehensions*.   
-
-Ils fonctionnent tous avec la même logique et avec des syntaxes similaires.
+- les *generator comprehensions*. (même syntaxe que la list comprehension avec `()` à la place des `[]`)
 
 ## Type checker, Formateur et Linter
 
