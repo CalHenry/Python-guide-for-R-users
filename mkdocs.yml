@@ -6,14 +6,39 @@ repo_url: https://github.com/CalHenry/Python-guide-for-R-users
 theme:
   name: material
   palette:
-    - scheme: default
+    # Palette toggle for system
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: deep purple
+      accent: deep purple
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
-    - scheme: slate
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: deep purple
+      accent: deep purple
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
+
+  nav:
+    - index.md
+    - terminal.md
+    - python.md
+    - git.md
+    - coder_python.md
+    - notebooks.md
+    - toolkit.md
+
   features:
     - navigation.tabs
     - navigation.top
@@ -38,7 +63,6 @@ markdown_extensions:
       - question
       - warning
       - example
-      - important
       - quote
   - pymdownx.mark
   - pymdownx.details
