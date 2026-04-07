@@ -3,7 +3,7 @@
 Pourquoi une autre librairie de notebooks alors que Jupyter existe, et qu'il sert autant pour R que Python ?
 
 
-??? note "Critiques de Jupyter"
+??? important "Critiques de Jupyter"
     
     Le notebook Jupyter est un outil où la *flexibilité* prime, c'est formidable pour l'exploration rapide, l'apprentissage ou le prototypage. Pourtant, cette liberté a un coût. Dès que le code gagne en complexité ou s’intègre à un workflow de production, elle se transforme en contrainte, minant la reproductibilité et favorisant les mauvaise pratiques de code.
     
@@ -28,19 +28,10 @@ Pourquoi une autre librairie de notebooks alors que Jupyter existe, et qu'il ser
     - Git diff illisible :  
     Le format `.ipynb` mélange code et outputs sérialisés en JSON, ce qui rend les diffs quasiment inexploitables pour une revue de code.
     
-    S'inspirant de Jupyter et de ses problèmes, des alternatives ont vu le jour, proposent un outil moins permissif pour atténuer/ retirer ces problèmes :  
-    - Pour R, [Quarto](https://quarto.org/) adresse une partie de ces problèmes.  
-    - Pour Python, [Marimo](https://marimo.io/), présenté dans le reste du chapitre.
+    S'inspirant de Jupyter et de ses problèmes, des alternatives ont vu le jour, proposent un outil moins permissif pour atténuer/ retirer ces problèmes.
 
 [Marimo](https://marimo.io/) est une alternative moderne conçue explicitement pour ne pas avoir les mêmes problèmes que Jupyter. 
 
-Les avantages de marimo :  
-  - Moderne : réactivité, intégration  
-  - Meilleure intégration avec Python  
-  - Versioning avec Git comme un script classique  
-  - La philosophie  
-  - Éditeur complet  
-  - Projet mature, maintenu et avec un communauté croissante  
     
 ## Philosophie
 
@@ -54,8 +45,8 @@ Cela donne trois avantages majeurs :
 
 - **Git fonctionne**. Jupyter produit un fichier JSON, qui n'est pas idéal pour correctement voir les différences entre deux versions du fichier.
 
-- **Pas besoin conversion entre notebook et script**. Le notebook peut être run comme un simple script Python. Si run directement, toute la partie visuelle et interactive du notebook est exécutée sans rendu visuel.   
-Par exemple, si le notebook explore et nettoie un dataset avec des plots et retourne un fichier csv dans le dossier `data`. Alors run le notebook avec `#!shell uv run marimo_nb.py` va process les données et retourner le fichier csv comme l'aurais fais un équivalent script du notebook.
+- **Pas besoin conversion entre notebook et script**. Le notebook peut être run comme un simple script Python. Si run directement, tous les éléments visuels et interactifs du notebook sont ignorés ou remplacés par leur valeur initiale.   
+Par exemple, si le notebook explore et nettoie un dataset avec des plots et retourne un fichier csv dans le dossier `data`. Alors run le notebook avec `uv run marimo_nb.py` va process les données et retourner le fichier csv comme l'aurais fais un équivalent script du notebook.
 
 - **Intégration avec Python**. Comme le notebook est juste un script Python, on peut définir des fonctions, des classes, et les importer dans d'autres scripts Python ou notebooks. 
 
@@ -67,9 +58,12 @@ Par exemple, si le notebook explore et nettoie un dataset avec des plots et reto
 Pour avoir la réactivité du notebook, il doit respecter certaines règles qui ne sont pas présentes dans Jupyter :
 
 - variables uniques : Condition nécessaire pour la réactivité. Si je crée `a = 2` dans la première cellule, alors je ne peux pas écrire `a = 4` dans la deuxième.  
-Cela peut paraitre contraignant au premier abord, s'oppose aux habitudes de Jupyter et crée le *"forcé de constamment inventer des nouveaux noms pour tester de nouveaux codes (aa= 4 puis aaa=5)"*. Mais en réalité, il y a des vrais bénéfices pour la stabilité, la robustesse, la clarté et reproductibilité du script.  
+Cela peut paraitre contraignant au premier abord, s'oppose aux habitudes de Jupyter et crée le *"forcé de constamment inventer des nouveaux noms pour tester des variantes (aa= 4 puis aaa=5)"*.   
+Mais en réalité, c'est l'occasion de développer des bonnes pratiques de code Python. Transformer les blocs de code en fonctions, bien découper les cellules. Bien appliquées, ces pratiques résoulvent naturellement le problème de devoir "tester des variantes".  
 
-??? note "Exemple"
+> Il y a des vrais bénéfices pour la stabilité, la robustesse, la clarté et reproductibilité du script.  
+
+??? abstract "Exemple"
 
     Reprenons l'exemple du début du chapitre :
     
@@ -82,13 +76,54 @@ Cela peut paraitre contraignant au premier abord, s'oppose aux habitudes de Jupy
     ```
     Si je change pour `a=5`, la cellule 2 va automatiquement s'actualiser avec la nouvelle valeur `b=10`. (Tu peux désactiver la réactivité automatique, dans ce cas la cellule 2 gagne une bordure rouge qui indique qu'elle n'est pas à jour avec le reste du notebook.)
     
+/// tip | Le projet marimo est mature, maintenu et avec une communauté croissante  
+///
+
 ## Fonctionnalités de Marimo
 
 Marimo, comme JupyterLab, contient un environnement complet avec différents panels et intégrations, qui rendent son utilisation simple et intuitive.  
 Je ne présente pas tout ici, je te laisse découvrir le reste.
 
 - **Package manager intégré**, qui te laisse installer des packages sans passer par le terminal, et qui affiche un pop up si tu essaye de run une cellule avec un package qui n'est pas installé dans l'environnement virtuel. Marimo fonctionne très bien avec UV et Pixi.
- - **Mode "sandbox"** : environnement isolé à la volée, enlève le besoin de se préoccuper de l'environnement virtuel du projet. 
+- **Mode "sandbox"** : environnement isolé à la volée, enlève le besoin de se préoccuper de l'environnement virtuel du projet. 
+
+??? tip "Ce que permet le mode sandbox"
+    Le mode *sandbox* débloque des possibilités innovantes pour le **partage**, particulièrement à un public qui ne code pas.
+    
+    Les notebooks marimo peuvent être exécutés directement dans le navigateur web (par le navigateur, oui oui, une instance de Python est exécutée à l'intérieur du navigateur, grâce à [pyodide](https://pyodide.org/en/stable/usage/quickstart.html)). Il devient un notebook WebAssembly (https://docs.marimo.io/guides/wasm/?h=wasm).
+    
+    Si tu partages un notebook wasm : 
+    
+    - Pas besoin d'installer Python
+    
+    - Pas besoin de gérer le déployement et le backend. Il suffit de partager le notebook
+    
+    - Pas besoin de se connecter à une instance de Python qui run dans le cloud (elle run localement dans le navigateur)
+    
+    Pour être exécuté dans le navigateur, il faut que le notebook donne explicitement les packages dont il a besoin pour run.  
+    Le mode sandbox ajoute des lignes en haut du notebook :
+    ```python
+    # /// script
+    # requires-python = ">=3.12"
+    # dependencies = [
+    #     "ipython==9.11.0",
+    #     "marimo>=0.21.1",
+    #     "matplotlib==3.10.8",
+    #     "numpy==2.4.3",
+    #     "polars==1.39.3",
+    # ]
+    # ///
+    ...
+    ```
+    Ces informations sont utilisées pour reproduire l'environnement du notebook.
+    
+    Tout ce dont le notebook a besoin est contenu dans le fichier du notebook. Tu peux très simplement partager ton notebook d'analyse de données à ton superviseur, ça t'a seulement demandé de rajouter le flag `--sandbox`.
+    
+    
+    
+
+
+
 - **Data explorer** : Widget interactif pour les dataframes, explorateur de rows et de colonnes avec des graphiques des distributions, et un constructeur de graphique no-code. Tout pour rapidement manipuler et explorer les données, sans devoir écrire du code pour interagir avec les données. (Quand je découvre des nouvelles données je passe toujours par là)
 ![marimo_data_explorer](screenshots/marimo.png)
 
@@ -97,8 +132,19 @@ Je ne présente pas tout ici, je te laisse découvrir le reste.
 
 Marimo inclut aussi une section spéciale pour les secrets, un terminal intégré et supporte le formatting avec Ruff.  
 
-/// admonition | 
-    type: tip 
+/// tip | 
     
 **L'ensemble rend le travail de données à la fois plus agréable et plus puissant qu'avec un IDE classique.**
 ///
+
+## Comment démarrer ?
+
+Une commande dans le terminal :
+```shell
+uv run marimo edit mon_notebook.py            # crée ou ouvre un notebook
+
+uv run marimo edit mon_notebook.py --sandbox  # active le mode sandbox
+
+# Tutoriels proposés par marimo
+uv run marimo tutoriel --help                 # pour choisir le notebook ;)
+```
