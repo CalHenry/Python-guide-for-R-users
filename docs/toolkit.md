@@ -190,7 +190,8 @@ Notebooks :
 ---
 
 ## L'écosystème de Python pour les data sciences et les statistiques
-(uniquement les packages principaux, les plus utilisés, les plus populaires ou les plus utiles quand on vient de R)
+
+> uniquement les packages principaux, les plus utilisés, les plus populaires ou les plus utiles quand on vient de R.
 
 ### Scientifique
 - [Numpy](https://numpy.org/): implémentation pour Python des vecteurs (même logique que R, tout est un array (multidimensionnels contrairement aux vecteurs 1D de R))
@@ -221,7 +222,7 @@ Notebooks :
 - [NLTK](https://www.nltk.org/) : librairie complète de NLP. Pédagogique, académique. Utilisé dans la recherche
 
 ### Autres
-- [FastAPI](https://fastapi.tiangolo.com/) : Faire des API performante, facile à prendre en main.
+- [FastAPI](https://fastapi.tiangolo.com/) : Développer des API performantes et faciles à prendre en main.
 - [Pydantic](https://docs.pydantic.dev/latest/) : Data validation
 
 ??? note "Avancé"
@@ -248,7 +249,7 @@ Même quand la syntaxe ressemble à R, le comportement peut être très différe
 /// info | Mutabilité (le piège n°1)
 ///
 
-En R, les objets sont (quasi) immuables, tu t'attends à une copie.
+En R, les objets sont (quasi) immuables, tu t'attends à une copie.  
 En Python, beaucoup d’objets sont modifiables en place.
 
 ```python
@@ -265,8 +266,9 @@ b = a.copy()
 
 ---
 
-/// info | Index commence à 0, c’est une source d’erreurs constante au début.
+/// info | Index commence à 0
 ///
+C’est une source d’erreurs constante au début car elle entre en conflit avec les habitudes de R.
 
 ```python
 # Python
@@ -283,8 +285,10 @@ x[1]  # 10
 ///
 
 ```python
+# Je veux sélectionner une colonne
 df["col"]
-# peut être : une vue ou une copie, et entrainer des comportements inattendus
+# peut être : une vue ou une copie, et entrainer des comportements inattendus.
+# Mon df et cette copie sont liés et modifier l'un peut modifier l'autres. C'est dur à prévoir.
 
 # Bon réflexe : utiliser les fonctions de pandas pour sélectionner rows et colonnes, elles retournent un subset (non une copie)
 df = df.loc[:, "col1"]   # sélectionne par nom
@@ -295,7 +299,7 @@ df = df.iloc[:, [1, 5]] # selectionne par indice
 
 /// tip | Je recommande Polars car il n'a pas ce problème !
 
-Polars ne modifie jamais en place par défaut, de ce point de vue il se comporte comme R, donc tu ne peux pas modifier un dataframe par accident (alors que Pandas oui, *j'atteste*). 
+Polars ne modifie jamais en place par défaut, de ce point de vue il se comporte comme R, donc tu ne peux pas modifier un dataframe par accident (alors qu'avec Pandas oui, *j'atteste*). 
 Le comportement est prévisible.
 ///
 
@@ -323,7 +327,7 @@ int("1") + 1
 ///
 Pas de pipe pour Python (bien que des packages répliquent cette fonctionnalité, ce n'est pas naturel dans la syntaxe).
 
-Certaines libraires te permettent de faire du 'method chainning" (enchainer des opérations). Particulièrement avec Pandas ou Polars pour faire plusieurs modifications dans un seul bloc.
+Certaines libraires te permettent de faire du *"method chainning"* (enchainer des opérations). Particulièrement avec Pandas ou Polars pour faire plusieurs modifications dans un seul bloc.
 
 ```python
 import polars as pl
@@ -337,6 +341,12 @@ q = (
 # La syntaxe de Python pure ou de Numpy force à imbriquer les fonctions (code illisible)
 import numpy as np
 result = np.round(np.mean(np.sum(np.square(arr), axis=1)), 2)
+
+# Pour contrer cela, on crée des résultats intermédiaires (venant de R, c'est très peu élégant).
+r_square = np.square(arr)
+r_sum_squared_rows = np.sum(squared_arr, axis=1)
+r_mean_sum_squared = np.mean(sum_squared_rows)
+result = np.round(mean_sum_squared, 2)
 ```
 
 ---
@@ -349,10 +359,10 @@ Il est parfaitement fonctionnel mais il ne donne pas envie.
 
 Il est possible qu'un jour, à force de passer du temps dans ce rectangle noir, tu aies envie de couleurs et de plus d'ergonomie. Le terminal est extensible sans limites et de nombreux logiciels existent justement pour rendre cette expérience plus agréable.
 
-Dans cette sous-section, je présente quelques améliorations basiques, pour rendre l'expérience du terminal meilleure. Ces outils vont aussi améliorer le terminal intégré dans l'IDE.
+Dans cette section bonus, je présente quelques améliorations basiques, pour rendre l'expérience du terminal meilleure. Ces outils vont aussi améliorer le terminal intégré dans l'IDE.
 
-- [Tldr](https://github.com/tealdeer-rs/tealdeer) : Explique une commande avec des exemples simples et concrêt (suffit souvent à se débloquer et évite de devoir aller dans la doc)
-- [Bat](https://github.com/sharkdp/bat) : Remplace `cat`, ajoute du synthax highlighting
+- [Tldr](https://github.com/tealdeer-rs/tealdeer) : Explique une commande avec des exemples simples et concrêt (suffit souvent à se débloquer et évite de devoir aller dans la doc
+- [Bat](https://github.com/sharkdp/bat) : Remplace `cat`, ajoute du synthax highlighting et les statuts git
 
 ??? example "bat vs cat"
     
@@ -362,6 +372,8 @@ Dans cette sous-section, je présente quelques améliorations basiques, pour ren
     ![light cat](screenshots/cat_light.png){.only-light}
     ![dark cat](screenshots/cat_dark.png){.only-dark}
 
-- [Eza](https://eza.rocks/) : Remplace "ls", plus fonctionnalités et des couleurs
+- [Eza](https://eza.rocks/) : Remplace "ls", plus de fonctionnalités et des couleurs
 
 - [Zoxide](https://zoxide.org/) : Remplace "cd", mémorise les dossiers visités
+
+- [Starship](https://starship.rs/) : Personnaliser le prompt
