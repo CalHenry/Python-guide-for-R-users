@@ -15,6 +15,7 @@
 - Notebooks : **Marimo**
 ///
 
+---
 
 ## Python
 
@@ -139,6 +140,7 @@ Outils de l'écosystème pour coder en Python.
     
 > [En savoir plus sur les formateurs de code, linters de code et les type checker](coder_python.md)
 
+---
 
 ## Librairies Python pour aider la transition depuis R
 
@@ -185,7 +187,8 @@ Notebooks :
   - [Marimo](https://marimo.io/) - Notebook pur Python, réactif, riche et moderne. [Détails ici](notebooks.md).
   - [Jupyter](https://jupyter.org/) : Jupyter reste le standard historique, mais Marimo corrige plusieurs de ses limitations.
     
-    
+---
+
 ## L'écosystème de Python pour les data sciences et les statistiques
 (uniquement les packages principaux, les plus utilisés, les plus populaires ou les plus utiles quand on vient de R)
 
@@ -236,6 +239,7 @@ Notebooks :
     - [Pydantic-ai](https://ai.pydantic.dev/) : Framework IA qui intègre le type safety et la data validation au coeur de son design. Parfait pour développer des solutions propres et robustes.
     - [Ollama](https://docs.ollama.com/), [LMStudio](https://lmstudio.ai/docs/python) et [vLLM](https://vllm.ai/) : "inference and serving engines", pour utiliser des LLM en local. vLLM est plus puissant et plus complexe. LMStudio permet de facilement utiliser des modèles MLX (pour les puces Apple).
 
+---
 
 ## Pièges classiques quand on vient de R
 
@@ -334,6 +338,8 @@ q = (
 import numpy as np
 result = np.round(np.mean(np.sum(np.square(arr), axis=1)), 2)
 ```
+
+---
 
 ## Bonus : améliorer son terminal
 

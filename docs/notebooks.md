@@ -34,7 +34,8 @@
 
 [Marimo](https://marimo.io/) est une alternative moderne conçue explicitement pour ne pas avoir les mêmes problèmes que Jupyter. 
 
-    
+---
+
 ## Philosophie
 
 **Marimo défend une autre vision de la simplicité** : un notebook n’est pas forcément plus simple quand tout est permis, mais plutôt quand des règles claires encadrent les usages et préviennent les erreurs.   
@@ -80,6 +81,8 @@ Mais en réalité, c'est l'occasion de développer des bonnes pratiques de code 
     
 /// tip | Le projet marimo est mature, maintenu et avec une communauté croissante  
 ///
+
+---
 
 ## Fonctionnalités de Marimo
 
@@ -132,10 +135,10 @@ Je ne présente pas tout ici, je te laisse découvrir le reste.
 
 Marimo inclut aussi une section spéciale pour les secrets, un terminal intégré et supporte le formatting avec Ruff.  
 
-/// tip | 
-    
-**L'ensemble rend le travail de données à la fois plus agréable et plus puissant qu'avec un IDE classique.**
+/// success | **L'ensemble rend le travail de données à la fois plus agréable et plus puissant qu'avec un IDE classique.**
 ///
+
+---
 
 ## Comment démarrer ?
 

@@ -10,6 +10,8 @@ Ce chapitre explore les concepts clés, les différences majeures entre les deux
 
 - Éléments de syntaxe
 
+---
+
 ## Syntaxe
 
 ### Indentation
@@ -188,6 +190,8 @@ La list comprehension n'est pas la seule, c'est la plus utilisée, mais il exist
 
 - les *generator comprehensions*. (même syntaxe que la list comprehension avec `()` à la place des `[]`)
 
+---
+
 ## Type checker, Formateur et Linter
 
 **Trio de choc** pour écrire un code irréprochable.
@@ -247,6 +251,9 @@ Ruff est présenté dans la [section toolkit](toolkit.md).
     
     - R a depuis peu un super formateur : [Air](https://tidyverse.org/blog/2025/02/air/), écrit en Rust, c'est le jumeau du formateur de Ruff pour R.
   
+  
+---
+
 ## Bonne pratiques de Python
 
 - **Import**
@@ -297,6 +304,8 @@ Python suis une [convention](https://peps.python.org/pep-0008/#introduction) sur
 En machine learning, on utilise `X`, `X_train`, `X_test`. Héritage des statiques qui écrit les matrices en majuscules pour les différencier des vecteurs ou des scalaires.  
 La variable expliquée (y), est elle, gardée en minuscule (car c'est un vecteur).
 ///
+
+---
 
 ## Class et def
 

@@ -2,9 +2,13 @@
 
 > L'écosystème de Python, c'est aussi toute une infrastructure, mais contrairement à R, rien n'est géré pour toi par défaut. Environnements virtuels, gestionnaires de packages, versions de Python, ce chapitre démêle tout ça.
 
+---
+
 ## Python binary
 - Le Python installé est un ***interpréteur***. Il compile le script en bytecode (.pyc), puis la machine virtuelle de Python l'exécute.  
 - On peut avoir plusieurs versions de Python installées (Python 3.9, Python3.12,...)
+
+---
 
 ## Les environnements virtuels
 > Si tu as déjà utilisé ***renv***, c'est la même idée, mais obligatoire en Python.
@@ -48,6 +52,8 @@ project_b/.venv/lib/python3.12/site-packages/numpy/   ← v2.0
 ///success | Chaque projet doit avoir son environnement virtuel dédié.
 ///
 
+---
+
 ## Comment ça fonctionne à l'intérieur
 
 > Pour comprendre pourquoi on crée un environnement par projet et pas un seul global, il faut comprendre ce qui se passe réellement.
@@ -83,6 +89,7 @@ Si les environnements virtuels sont dans des dossiers différents, est-ce que je
 └─────────────────────────────────────────────────────────────────────┘
 ```
 
+---
 
 ## Bonnes pratiques modernes
 
@@ -99,6 +106,8 @@ Si les environnements virtuels sont dans des dossiers différents, est-ce que je
 ├── data
 ...
 ```
+
+---
 
 ## Gestionnaires d'environnement et dépôts de packages
 > Petit tour de l'écosystème, des anciennes et des nouvelles options.
@@ -166,6 +175,8 @@ Pixi est un mélange de **conda-forge** et **UV** :
 
 
 Je conseille de ne pas utiliser Pip car UV est simplement meilleur, ni Conda parce que Pixi est plus complet pour Python.
+
+---
 
 ## Utiliser son environnement virtuel
 

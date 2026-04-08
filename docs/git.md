@@ -2,12 +2,16 @@
 
 > Si tu as déjà survécu avec des fichiers `analyse_final_v2_VRAIMENT_FINAL.R`, Git est la solution propre à ce problème. C'est l'outil de versioning standard, incontournable dès qu'on travaille en équipe ou sur des projets sérieux.
 
+---
+
 ## Pourquoi utiliser Git ?
 
 - **Ne jamais perdre** une version de ton code
 - **Traçabilité** : savoir qui a modifié quoi et quand
 - **Travail en équipe** : merger les contributions de plusieurs personnes
 - **Expérimenter sans risque** grâce aux branches
+
+---
 
 ## Modèle mental
 
@@ -44,6 +48,7 @@ Tu travailles ici              Backup & collaboration
 
 Git fonctionne **seul** sur ton ordi. GitHub est juste un cloud pour sauvegarder et partager ton travail. Il apporte ensuite des fonctionnalités pour le travail en équipe et la collaboration sur un même repo.
 
+---
 
 ## Git en pratique
 
@@ -161,7 +166,9 @@ $ git diff
 $ git diff docs/git.md
 ```
 
-## Concepts
+---
+
+## Concepts propres à Git
 
 **.gitignore**
 
