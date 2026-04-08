@@ -3,15 +3,16 @@
 /// quote | Le bon outil au bon endroit, c'est mieux.         - Moi
 ///
 
-Cet chapitre regroupe les logiciels présentés dans les autres parties du guide.
+> Pas besoin de tout lire d'une traite : ce chapitre est fait pour être consulté et reconsulté. Il regroupe les outils et packages recommandés pour les data sciences en Python, et ceux qui apportent un peu de la philosophie R dans l'écosystème Python.
+
 
 /// example | **TL;DR — Mon setup recommandé si tu viens de R**
-- IDE : Positron
-- Environnement : uv
-- Dataframe : Polars
-- DataViz : Seaborn ou Plotnine
-- Statistiques : statsmodels
-- Notebooks : Marimo
+- IDE : **Positron**
+- Environnement : **uv**
+- Dataframe : **Polars**
+- DataViz : **Seaborn** ou **Plotnine**
+- Statistiques : **statsmodels**
+- Notebooks : **Marimo**
 ///
 
 
@@ -19,20 +20,25 @@ Cet chapitre regroupe les logiciels présentés dans les autres parties du guide
 
 Outils de l'écosystème pour coder en Python.
 
-??? note "[Positron (IDE)](https://positron.posit.co/)"
+??? note "Positron"
 
-    Positron est un fork de VSCode par Posit, pensé pour les datasciences et pour créer un outil Python et R familier aux développeurs R. 
+    [Positron (IDE)](https://positron.posit.co/) est un fork de VSCode par Posit, pensé pour les data sciences et pour créer un outil Python et R familier aux développeurs R. 
     
-    > En 2 mots : c'est VSCode qui se déguise en RStudio. VSCode *pensé* pour les datasciences.  
+    > En 2 mots : c'est VSCode qui se déguise en RStudio. VSCode *pensé* pour les data sciences.  
     
     Les avantages majeurs par rapport à VScode sont :
+    
     - Support de R et de Python nativement
+    
     - Même layout que RStudio - même logique que RStudio
+    
     - Data explorer
+    
     - UI adaptée pour Python et R (passage de Python à R et de choix de l'environnement virtuel ergonomique)
+    
     - Support natif pour Quarto, Shiny, Air (formateur pour R)
     
-    C'est donc un IDE moderne, qui propose une meilleure expérience (plus intégrée) pour les data sciences et l'exploration de données que VSCode.  
+    C'est donc un IDE moderne qui propose une meilleure expérience (plus intégrée) pour les data sciences et l'exploration de données que VSCode.  
     Positron s'inspire beaucoup de RStudio et pour le mieux.
     
     
@@ -40,9 +46,9 @@ Outils de l'écosystème pour coder en Python.
     > Positron est une super alternative pour tout utilisateur de R qui doit se mettre à Python.
 
 
-??? note "[UV (gestionnaire d'environnement)](https://docs.astral.sh/uv/pip/environments/)"
+??? note "UV"
 
-    UV est présenté dans la [section sur les gestionnaires d'environnements](python.md).  
+    [UV (gestionnaire d'environnement)](https://docs.astral.sh/uv/pip/environments/) est présenté dans la [section sur les gestionnaires d'environnements](python.md).  
     
     Commandes les plus utiles de UV
     
@@ -62,7 +68,7 @@ Outils de l'écosystème pour coder en Python.
     # Installer ou mettre à jour l'environnement virtuel
     uv sync
     
-    # Schema des dépendances du projet sous forme d'arbre
+    # Schéma des dépendances du projet sous forme d'arbre
     uv tree
     
     # Run une commande
@@ -72,9 +78,9 @@ Outils de l'écosystème pour coder en Python.
     uv run <script.py>  # version compacte de 'uv run python <script.py>'
     ```
 
-??? note "[Pixi (gestionnaire d'environnement pour conda)](https://pixi.prefix.dev/latest/)"
+??? note "Pixi"
     
-    Pixi est présenté en détails [ici](python.md).
+    [Pixi (gestionnaire d'environnement pour conda)](https://pixi.prefix.dev/latest/) est présenté en détails [ici](python.md).
     
     Commandes les plus utiles de Pixi
     
@@ -105,15 +111,15 @@ Outils de l'écosystème pour coder en Python.
     pixi run <command> # ex : pixi run python <file.py>
     ```
     
-??? note "[Ruff (linter and formateur)](https://docs.astral.sh/ruff/)"
+??? note "Ruff"
 
-    Ruff devient progressivement LE formateur et linter de Python, extrêmement rapide et très bien intégré/ supporté par les IDE.  
+    [Ruff (linter and formateur)](https://docs.astral.sh/ruff/) devient progressivement LE formateur et linter de Python, extrêmement rapide et très bien intégré/ supporté par les IDE.  
     
     > Le formateur et le linter de Ruff sont en fait deux sous commandes distinctes, et tu peux n'utiliser que l'un ou l'autre.
     
     Je recommande d'utiliser Ruff avec l'IDE. Chaque fois que tu sauvegardes ton script, ruff le formate. Positron utilise Ruff par défaut.
     
-    Tu peux également peux utiliser Ruff depuis le terminal.
+    Tu peux également utiliser Ruff depuis le terminal.
     ```sh
     ruff check <script.py>    # linter
     ruff format <script.py>   # formateur
@@ -121,11 +127,11 @@ Outils de l'écosystème pour coder en Python.
     ruff help
     ```
 
-??? note "[Pyrefly (type checker)](https://pyrefly.org/en/docs/)"
+??? note "Pyrefly"
 
-    Pyrefly est un Type checker pour Python, extrêmement rapide.
+    [Pyrefly (type checker)](https://pyrefly.org/en/docs/) est un Type checker pour Python, extrêmement rapide.
     
-    Comme pour Ruff, Pyrefly est le type checker par défault de Positron.
+    Comme pour Ruff, Pyrefly est le type checker par défaut de Positron.
     
     /// info | Pyrefly est encore jeune dans l'écosystème.
     Si tu veux savoir pourquoi les développeurs de Positron l'on choisit, tu peux lire [cet article](https://positron.posit.co/blog/posts/2026-03-31-python-type-checkers/#what-we-chose).
@@ -136,7 +142,7 @@ Outils de l'écosystème pour coder en Python.
 
 ## Librairies Python pour aider la transition depuis R
 
-Cette section fait le lien direct entre les packages que l'on utilise sur R et leur équivalent ou solution la plus proche en Python. Soit parce que la philosphie du package R est préservée, soit parce que la librairie est plus facile à prendre en main que le standard de Python.
+Cette section fait le lien direct entre les packages que l'on utilise sur R et leur équivalent ou solution la plus proche en Python. Soit parce que la philosophie du package R est préservée, soit parce que la librairie est plus facile à prendre en main que le standard de Python.
 
 Datasets :
 
@@ -190,10 +196,10 @@ Notebooks :
 
 ### Dataframe
 - [Pandas](https://pandas.pydata.org/docs/) : librairie la plus populaire, la plus connue et la plus utilisée pour les dataframes (construit par-dessus numpy). Syntaxe est souvent déroutante quand on vient de R
-- [Polars](https://docs.pola.rs/) : API plus expréssive, très performant, possède un mode lazy
+- [Polars](https://docs.pola.rs/) : API plus expressive, très performant, possède un mode lazy
 
 ### Machine Learning
-- [scikit-learn](https://scikit-learn.org/stable/index.html) : tout le Machine Learning, très bonne documentations et très bons exemples. LA raison pour laquelle le ML est si populaire sur Python. (construit par-dessus numpy et scipy)
+- [scikit-learn](https://scikit-learn.org/stable/index.html) : tout le Machine Learning, très bonne documentation et très bons exemples. LA raison pour laquelle le ML est si populaire sur Python. (construit par-dessus numpy et scipy)
 ### Deep Learning
 - [Pytorch](https://pytorch.org/) : grand écosystème de Deep Learning, outils pour créer et déployer des réseaux de neurones. PyTorch est aujourd’hui dominant en recherche et très utilisé aussi en production
 - [TensorFlow](https://www.tensorflow.org/) : globalement le même usage que PyTorch, perd du terrain, mais reste utilisé dans l'industrie.
@@ -276,7 +282,7 @@ x[1]  # 10
 df["col"]
 # peut être : une vue ou une copie, et entrainer des comportements inattendus
 
-# Bon réflexe : utiliser les fonctions de pandas pour sélectionner rows et colonnes, elles retournes un subset (non une copie)
+# Bon réflexe : utiliser les fonctions de pandas pour sélectionner rows et colonnes, elles retournent un subset (non une copie)
 df = df.loc[:, "col1"]   # sélectionne par nom
 # ou
 df = df.iloc[:, [1, 5]] # selectionne par indice
@@ -297,7 +303,7 @@ Le comportement est prévisible.
 ```python
 # avec R :
 "1" + 1
-# coercion implicite
+# coercition implicite
 
 # avec Python
 "1" + 1
@@ -333,11 +339,11 @@ result = np.round(np.mean(np.sum(np.square(arr), axis=1)), 2)
 
 Le terminal d'origine est sobre et moche. Texte blanc sur fond noir.  
 Le terminal intégré à l'IDE est exactement la même fenêtre mais dans l'éditeur.  
-Il est parfaitement fonctionnel mais, il ne donne pas envie.  
+Il est parfaitement fonctionnel mais il ne donne pas envie.  
 
 Il est possible qu'un jour, à force de passer du temps dans ce rectangle noir, tu aies envie de couleurs et de plus d'ergonomie. Le terminal est extensible sans limites et de nombreux logiciels existent justement pour rendre cette expérience plus agréable.
 
-Dans cette sous section, je présente quelques améliorations basiques, pour rendre l'expérience du terminal meilleure. Ces outils vont aussi améliorer le terminal intégré dans l'IDE.
+Dans cette sous-section, je présente quelques améliorations basiques, pour rendre l'expérience du terminal meilleure. Ces outils vont aussi améliorer le terminal intégré dans l'IDE.
 
 - [Tldr](https://github.com/tealdeer-rs/tealdeer) : Explique une commande avec des exemples simples et concrêt (suffit souvent à se débloquer et évite de devoir aller dans la doc)
 - [Bat](https://github.com/sharkdp/bat) : Remplace `cat`, ajoute du synthax highlighting

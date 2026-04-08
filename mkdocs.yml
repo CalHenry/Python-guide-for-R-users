@@ -30,19 +30,19 @@ theme:
         icon: material/brightness-4
         name: Switch to light mode
 
-  nav:
-    - index.md
-    - terminal.md
-    - python.md
-    - git.md
-    - coder_python.md
-    - notebooks.md
-    - toolkit.md
-
   features:
     - navigation.tabs
     - navigation.top
     - content.code.copy
+
+nav:
+  - index.md
+  - terminal.md
+  - python.md
+  - git.md
+  - coder_python.md
+  - notebooks.md
+  - toolkit.md
 
 markdown_extensions:
   - tables:
@@ -66,6 +66,7 @@ markdown_extensions:
       - quote
   - pymdownx.mark
   - pymdownx.details
+  - pymdownx.keys
   - attr_list
   - pymdownx.extra
 
