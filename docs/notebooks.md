@@ -1,11 +1,13 @@
 # Notebooks
 
-Pourquoi une autre librairie de notebooks alors que Jupyter existe, et qu'il sert autant pour R que Python ?
+> En R, tu as probablement utilisé R Markdown ou Quarto. Python a son équivalent historique : **Jupyter**.
+
+> Alors pourquoi une autre librairie de notebooks alors que Jupyter existe, et qu'il sert autant pour R que pour Python ?
 
 
 ??? important "Critiques de Jupyter"
     
-    Le notebook Jupyter est un outil où la *flexibilité* prime, c'est formidable pour l'exploration rapide, l'apprentissage ou le prototypage. Pourtant, cette liberté a un coût. Dès que le code gagne en complexité ou s’intègre à un workflow de production, elle se transforme en contrainte, minant la reproductibilité et favorisant les mauvaise pratiques de code.
+    Le notebook Jupyter est un outil où la *flexibilité* prime, c'est formidable pour l'exploration rapide, l'apprentissage ou le prototypage. Pourtant, cette liberté a un coût. Dès que le code gagne en complexité ou s’intègre à un workflow de production, elle se transforme en contrainte, minant la reproductibilité et favorisant les mauvaises pratiques de code.
     
     
     - État caché et ordre d'exécution
@@ -18,7 +20,7 @@ Pourquoi une autre librairie de notebooks alors que Jupyter existe, et qu'il ser
     print(b)  # affiche 20
     ```
     
-    Si je modifie `a = 5` dans la cellule 1 sans re-exécuter la cellule 2, le notebook affiche toujours `b = 20`, une valeur qui ne correspond plus au code visible. C'est le **hidden state** : l'état réel du kernel diverge silencieusement de ce qu'on lit.  
+    Si je modifie `a = 5` dans la cellule 1 sans réexécuter la cellule 2, le notebook affiche toujours `b = 20`, une valeur qui ne correspond plus au code visible. C'est le **hidden state** : l'état réel du kernel diverge silencieusement de ce qu'on lit.  
     
     Concrètement, ça mène à un pattern fréquent : les premières cellules tournent bien, on modifie des valeurs au fil de l'exploration, et à un moment le notebook retourne une erreur ou un résultat inattendu, sans qu'on sache exactement quelle combinaison de cellules avait produit le bon résultat.
     
@@ -28,7 +30,7 @@ Pourquoi une autre librairie de notebooks alors que Jupyter existe, et qu'il ser
     - Git diff illisible :  
     Le format `.ipynb` mélange code et outputs sérialisés en JSON, ce qui rend les diffs quasiment inexploitables pour une revue de code.
     
-    S'inspirant de Jupyter et de ses problèmes, des alternatives ont vu le jour, proposent un outil moins permissif pour atténuer/ retirer ces problèmes.
+    S'inspirant de Jupyter et de ses problèmes, des alternatives ont vu le jour, proposant un outil moins permissif pour atténuer/retirer ces problèmes.
 
 [Marimo](https://marimo.io/) est une alternative moderne conçue explicitement pour ne pas avoir les mêmes problèmes que Jupyter. 
 
@@ -36,7 +38,7 @@ Pourquoi une autre librairie de notebooks alors que Jupyter existe, et qu'il ser
 ## Philosophie
 
 **Marimo défend une autre vision de la simplicité** : un notebook n’est pas forcément plus simple quand tout est permis, mais plutôt quand des règles claires encadrent les usages et préviennent les erreurs.   
-On retrouve ici la philosophie de la communauté Python elle même, qui aime définir des règles et les suivre, non pas pour restreindre, mais pour mieux structurer le code. C’est ce qui permet de collaborer efficacement.
+On retrouve ici la philosophie de la communauté Python elle-même, qui aime définir des règles et les suivre, non pas pour restreindre, mais pour mieux structurer le code. C’est ce qui permet de collaborer efficacement.
 
 ### Python first
 Marimo n'a pas de format à part comme Jupyter (**.ipynb**), c'est un simple script Python (**.py**).  
@@ -51,15 +53,15 @@ Par exemple, si le notebook explore et nettoie un dataset avec des plots et reto
 - **Intégration avec Python**. Comme le notebook est juste un script Python, on peut définir des fonctions, des classes, et les importer dans d'autres scripts Python ou notebooks. 
 
 ### Moderne
-- Réactivité : Quand on change la valeur d'une variable dans une cellule, toutes les cellules qui dépendent de cette valeur sont automatiquement actualisée.
-- Elements interactifs : Comprend un panel d'éléments intégratifs qui marchent directement avec la ractivité du notebook. Par exemple un slider pour choisir une valeur, changer les bornes de l'axe d'un graphique...
+- Réactivité : quand on change la valeur d'une variable dans une cellule, toutes les cellules qui dépendent de cette valeur sont automatiquement actualisées.
+- Éléments interactifs : comprend un panel d'éléments qui marchent directement avec la réactivité du notebook. Par exemple un slider pour choisir une valeur, changer les bornes de l'axe d'un graphique...
 
 ### Réactivité (fonctionnement et contraintes)
 Pour avoir la réactivité du notebook, il doit respecter certaines règles qui ne sont pas présentes dans Jupyter :
 
-- variables uniques : Condition nécessaire pour la réactivité. Si je crée `a = 2` dans la première cellule, alors je ne peux pas écrire `a = 4` dans la deuxième.  
-Cela peut paraitre contraignant au premier abord, s'oppose aux habitudes de Jupyter et crée le *"forcé de constamment inventer des nouveaux noms pour tester des variantes (aa= 4 puis aaa=5)"*.   
-Mais en réalité, c'est l'occasion de développer des bonnes pratiques de code Python. Transformer les blocs de code en fonctions, bien découper les cellules. Bien appliquées, ces pratiques résoulvent naturellement le problème de devoir "tester des variantes".  
+- Variables uniques : condition nécessaire pour la réactivité. Si je crée `a = 2` dans la première cellule, alors je ne peux pas écrire `a = 4` dans la deuxième.  
+Cela peut paraitre contraignant au premier abord, s'opposer aux habitudes de Jupyter et créer le *"forcé de constamment inventer des nouveaux noms pour tester des variantes (aa= 4 puis aaa=5)"*.   
+Mais en réalité, c'est l'occasion de développer des bonnes pratiques de code Python. Transformer les blocs de code en fonctions, bien découper les cellules. Bien appliquées, ces pratiques résolvent naturellement le problème de devoir "tester des variantes".  
 
 > Il y a des vrais bénéfices pour la stabilité, la robustesse, la clarté et reproductibilité du script.  
 
@@ -84,7 +86,7 @@ Mais en réalité, c'est l'occasion de développer des bonnes pratiques de code 
 Marimo, comme JupyterLab, contient un environnement complet avec différents panels et intégrations, qui rendent son utilisation simple et intuitive.  
 Je ne présente pas tout ici, je te laisse découvrir le reste.
 
-- **Package manager intégré**, qui te laisse installer des packages sans passer par le terminal, et qui affiche un pop up si tu essaye de run une cellule avec un package qui n'est pas installé dans l'environnement virtuel. Marimo fonctionne très bien avec UV et Pixi.
+- **Package manager intégré**, qui te laisse installer des packages sans passer par le terminal, et qui affiche un pop up si tu essayes de run une cellule avec un package qui n'est pas installé dans l'environnement virtuel. Marimo fonctionne très bien avec UV et Pixi.
 - **Mode "sandbox"** : environnement isolé à la volée, enlève le besoin de se préoccuper de l'environnement virtuel du projet. 
 
 ??? tip "Ce que permet le mode sandbox"
@@ -96,7 +98,7 @@ Je ne présente pas tout ici, je te laisse découvrir le reste.
     
     - Pas besoin d'installer Python
     
-    - Pas besoin de gérer le déployement et le backend. Il suffit de partager le notebook
+    - Pas besoin de gérer le déploiement et le backend. Il suffit de partager le notebook
     
     - Pas besoin de se connecter à une instance de Python qui run dans le cloud (elle run localement dans le navigateur)
     
@@ -117,15 +119,13 @@ Je ne présente pas tout ici, je te laisse découvrir le reste.
     ```
     Ces informations sont utilisées pour reproduire l'environnement du notebook.
     
-    Tout ce dont le notebook a besoin est contenu dans le fichier du notebook. Tu peux très simplement partager ton notebook d'analyse de données à ton superviseur, ça t'a seulement demandé de rajouter le flag `--sandbox`.
+    Tout ce dont le notebook a besoin est contenu dans le script du notebook. Tu peux très simplement partager ton notebook d'analyse de données à ton collègue, ça t'a seulement demandé de rajouter le flag `--sandbox`.
     
     
-    
+- **Data explorer** : Widget interactif pour les dataframes, explorateur de rows et de colonnes avec des graphiques des distributions, et un constructeur de graphique no-code. Tout pour rapidement manipuler et explorer les données, sans devoir écrire du code pour interagir avec les données. (Quand je découvre des nouvelles données je passe toujours par là).
 
-
-
-- **Data explorer** : Widget interactif pour les dataframes, explorateur de rows et de colonnes avec des graphiques des distributions, et un constructeur de graphique no-code. Tout pour rapidement manipuler et explorer les données, sans devoir écrire du code pour interagir avec les données. (Quand je découvre des nouvelles données je passe toujours par là)
-![marimo_data_explorer](screenshots/marimo.png)
+![marimo_data_explorer](screenshots/marimo_light.png){.only-light}
+![marimo_data_explorer](screenshots/marimo_dark.png){.only-dark}
 
 - **Documentation** : Clique sur une fonction et affiche sa documentation dans un panel.
 - **Scratchpad** : C'est comme une cellule indépendante du notebook, tu peux tester tes codes, utiliser les mêmes noms de variable que dans le notebook sans que marimo retourne une erreur. 

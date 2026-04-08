@@ -1,4 +1,4 @@
-# Preface
+# Préface
 
 Bienvenue dans ce guide de prise en main de Python et de son écosystème, particulièrement si tu viens de R.
 
@@ -10,18 +10,18 @@ Venant de R, Python c'est :
 
 - Une prise en main bizarre
 
-- Beaucoup d'outils et de logiciels à gérer en même temps juste pour que ça "marche"
-
-- Compliqué pour aucune raison logique
+- Beaucoup d'outils et de logiciels à gérer en même temps juste pour que "ça marche"
 
 - Ne pas comprendre pourquoi les environnements virtuels nous veulent tant de mal
 
+- Compliqué pour aucune raison logique
+
 - Des noms de librairies sans saveurs comparé aux packages de R
 
-- Un language qui n'a pas le Tidyverse 😰
+- Un langage qui n'a pas le Tidyverse 😰
 
 Apprendre Python, c'est également une occasion de :
 
 - Découvrir et comprendre des concepts d'informatique et de programmation
 
-- Connaitre un langage qui peut être utilisé pour tout, avec un écosystème immense et des librairies incroyable
+- Connaitre un langage qui peut être utilisé pour tout, avec un écosystème immense et des librairies incroyables

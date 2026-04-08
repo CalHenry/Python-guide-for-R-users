@@ -1,5 +1,6 @@
 # Python, environnements virtuels et packages
 
+> L'écosystème de Python, c'est aussi toute une infrastructure, mais contrairement à R, rien n'est géré pour toi par défaut. Environnements virtuels, gestionnaires de packages, versions de Python, ce chapitre démêle tout ça.
 
 ## Python binary
 - Le Python installé est un ***interpréteur***. Il compile le script en bytecode (.pyc), puis la machine virtuelle de Python l'exécute.  
@@ -44,7 +45,8 @@ project_b/.venv/lib/python3.12/site-packages/numpy/   ← v2.0
 ➡️ Chaque version à un chemin différent et elles sont donc isolée.   
 ➡️ On résout les problèmes de dépendances, impossible autrement d'avoir deux projets qui utilisent deux versions différentes du même package
 
-Chaque projet doit avoir son environnement virtuel dédié.
+///success | Chaque projet doit avoir son environnement virtuel dédié.
+///
 
 ## Comment ça fonctionne à l'intérieur
 
@@ -58,7 +60,9 @@ Si les environnements virtuels sont dans des dossiers différents, est-ce que je
 **pip** ne sait pas si le package est déjà installé sur la machine, alors il le réinstalle. -> Duplication d'installations (qui peut finir par peser sur le disque)
 
 **uv** change ça :
+
 - les packages sont installés dans un seul dossier (cache)
+
 - au lieu de réinstaller, il relie avec un **hardlink** le dossier du cache avec le dossier de l'environnement.
 
 ```
@@ -80,9 +84,10 @@ Si les environnements virtuels sont dans des dossiers différents, est-ce que je
 ```
 
 
-## Les bonnes pratiques modernes
+## Bonnes pratiques modernes
 
-- Avoir l'environnement virtuel du projet directement dans le dossier du projet.
+/// tip | Avoir l'environnement virtuel du projet directement dans le dossier du projet.
+///
 ```sh
 .
 ├── .venv
@@ -96,7 +101,7 @@ Si les environnements virtuels sont dans des dossiers différents, est-ce que je
 ```
 
 ## Gestionnaires d'environnement et dépôts de packages
-Petit tour de l'écosystème, des anciennes et des nouvelles options.
+> Petit tour de l'écosystème, des anciennes et des nouvelles options.
 
 ### Pip & PyPI
 PyPI est le dépôt **officiel** des packages Python.  
@@ -105,40 +110,43 @@ Pip est le gestionnaire de packages **officiel** de Python, il télécharge les 
 
 ### UV
 
-UV c'est l'outil qui fait enfin consensus dans la communauté Python. Qu'est-ce qu'il apporte ?
+UV est l'outil qui fait enfin consensus dans la communauté Python. Qu'est-ce qu'il apporte ?
 
 -  **vitesse** (~10x plus rapide que pip)
 
 - **compatibilité** (développé comme un remplaçant de pip)
 
-- **tout en un** (gestionnaire de packages ET gestionnaire d'environnements)
+- **tout-en-un** (gestionnaire de packages ET gestionnaire d'environnements)
+
+UV fait ce qu'il doit faire et il le fait vite et bien. C'est un outil qui s'inscrit dans le futur de Python.
+
 
 ### Conda
 
 Conda est un gestionnaire de packages et d'environnements.   
 Développées pour les utilisateurs de Python, il sert en fait aux projets qui utilisent plusieurs langages en même temps.   
-> On s'en sert particulièrement dans le milieu académique et en biologie/ pharmacie, car de nombreux packages spécifiques à ces domaines sont accessibles avec conda pour différents langages.  
+> On s'en sert particulièrement dans le milieu académique et en biologie/ pharmacie, car de nombreux packages spécifiques à ces domaines sont accessibles avec conda dans différents langages.  
 
 Conda a des packages pour Python, R, Julia, C, C++...
 
 Pour un utilisateur de Python, l'avantage principal est qu'il télécharge et gère les dépendances d'autres langages.   
 
-> Certains packages Python sont construits par dessus des librairies de C, C++ ou Fortran pour les performances (très courant pour les packages scientifiques. Les packages R sont d'ailleurs souvent basés sur les mêmes librairies).   
+> Certains packages Python sont construits par-dessus des librairies de C, C++ ou Fortran pour les performances (très courant pour les packages scientifiques. Les packages R sont d'ailleurs souvent basés sur les mêmes librairies).   
 Conda assure que l'installation se fait correctement (là où pip installe juste la partie Python et ne gère pas les dépendances dans d'autres langages)
 
 
 ??? tip "Les différentes déclinaisons de conda"
 
-    - Anaconda :  Distribution d'Anaconda (entreprise) de conda, avec de nombreux packages pré-installés (~3GB de packages d'après Wikipédia quand même !)
-    - miniconda : version allégée de conda
-    - conda-forge : dépôt communaitaire de packages pour conda. Indépendant de Anaconda (c'est la raison pour laquelle il existe, autrement, si Anaconda ferme et supprime son dépôt, on perd tous les packages conda et le moyen d'y accéder)
-    - miniforge : alternative à miniconda mais utilise uniquement les packages de conda-forge (encore une fois pour l'indépendance d'Anaconda)
+    - **Anaconda** :  Distribution d'Anaconda (entreprise) de conda, avec de nombreux packages pré-installés (~3GB de packages d'après Wikipédia quand même !)
+    - **miniconda** : version allégée de conda
+    - **conda**-forge : dépôt communautaire de packages pour conda. Indépendant d'Anaconda (c'est la raison pour laquelle il existe, autrement, si Anaconda ferme et supprime son dépôt, on perd tous les packages conda et le moyen d'y accéder)
+    - **miniforge** : alternative à miniconda mais utilise uniquement les packages de conda-forge (encore une fois pour l'indépendance vis-à-vis d'Anaconda)
 
 
 ### Pixi
 Et Pixi, qu'est-ce que c'est ?
 
-Pixi est un mélange de conda-forge et UV :
+Pixi est un mélange de **conda-forge** et **UV** :
 
 - Destiné aux utilisateurs de conda (remplace conda, 100% compatible)
 
@@ -157,15 +165,15 @@ Pixi est un mélange de conda-forge et UV :
 | Projet Python + packages scientifiques lourds | Pixi |
 
 
-Je conseille de ne pas utiliser Pip car UV est simplement meilleur, ni Conda car Pixi est plus complet pour Python.
+Je conseille de ne pas utiliser Pip car UV est simplement meilleur, ni Conda parce que Pixi est plus complet pour Python.
 
 ## Utiliser son environnement virtuel
 
 Une fois l'environnement créé, il faut que Python utilise les packages qu'il contient 
 et pas ceux installés ailleurs sur la machine. Il y a deux approches.
 
-**La façon classique : activer l'environnement**
-```sh
+**La façon classique : activer l'environnement dans le terminal**
+```
 source .venv/bin/activate  # macOS / Linux
 .venv\Scripts\activate     # Windows
 ```
@@ -212,7 +220,7 @@ Avec pixi, c'est la même logique : `pixi run` ou `pixi shell` pour une session 
     uv python list        # toutes les versions Python connues de uv
     ```
     
-    La règle simple : si tu passes par `uv run` ou `pixi run`, tu n'as pas à vérifier — 
+    La règle simple : si tu passes par `uv run` ou `pixi run`, tu n'as pas à vérifier, 
     le bon Python est utilisé automatiquement. Le doute survient surtout quand on 
     appelle `python` directement dans un terminal sans être sûr de l'environnement actif.
 
@@ -221,7 +229,7 @@ Avec pixi, c'est la même logique : `pixi run` ou `pixi shell` pour une session 
 
 #### pyproject.toml
 
-l'équivalent du `DESCRIPTION` quand tu fais un package R, mais utilisé pour tout projet Python. Il déclare ton projet et ses dépendances et remplace les anciens `setup.py` et `requirements.txt`.
+L'équivalent du `DESCRIPTION` quand tu fais un package R, mais utilisé pour tout projet Python. Il déclare ton projet et ses dépendances et remplace les anciens `setup.py` et `requirements.txt`.
 
 ??? abstract "Exemple minimaliste de pyproject.toml"
 

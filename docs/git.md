@@ -1,5 +1,7 @@
 # Git & GitHub
 
+> Si tu as déjà survécu avec des fichiers `analyse_final_v2_VRAIMENT_FINAL.R`, Git est la solution propre à ce problème. C'est l'outil de versioning standard, incontournable dès qu'on travaille en équipe ou sur des projets sérieux.
+
 ## Pourquoi utiliser Git ?
 
 - **Ne jamais perdre** une version de ton code
@@ -9,7 +11,7 @@
 
 ## Modèle mental
 
-Git, c'est comme un **photographe** qui prend des photos de ton projet à des moments précis.
+Git est comme un **photographe** qui prend des photos de ton projet à des moments précis.
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
 │                        3 états de GIT                               │
@@ -45,7 +47,7 @@ Git fonctionne **seul** sur ton ordi. GitHub est juste un cloud pour sauvegarder
 
 ## Git en pratique
 
-Git est un outil en ligne de commande (CLI), mais les IDE modernes (VS Code, RStudio) l'intègrent directement.
+Git est un outil en ligne de commande (CLI), mais les IDE modernes (VSCode, RStudio) l'intègrent directement.
 
 ### Commandes essentielles
 
@@ -91,8 +93,9 @@ Git est un outil en ligne de commande (CLI), mais les IDE modernes (VS Code, RSt
 
 ### Séquences typiques
 
-**Faire un commit**  
+///example | **Faire un commit**  
 "Tu viens de modifier deux fichiers et tu veux sauvegarder uniquement l'un d'eux"
+///
 
 ```sh
 # 1. Voir ce qui a changé
@@ -103,17 +106,23 @@ $ git add docs/git.md
 $ git commit -m "doc: améliorer la section git"
 ```
 
-**Push to remote après un commit**  
-"Tu viens de faire un commit et tu veux le 'push' sur GitHub"
+---
+
+///example | **Push to remote après un commit**  
+"Tu viens de faire un commit et tu veux le push sur GitHub"
+///
 
 ```sh
 $ git push # sans arguments, push tous les commits de la branche actuelle à sa jumelle sur GitHub
-To https://github.com/CalHenry/MBook.git
+To https://github.com/you/your_repo.git
     2c24012..2249eb5  main -> main
 ```
 
-**Lier un repo local à GitHub**  
+---
+
+///example | **Lier un repo local à GitHub**  
 "Tu as déjà initié git sur ton dossier et tu veux le lier à un repo GitHub que tu viens de créer sur le site.
+///
 ```sh
 # Si le repo local existe déjà 
 $ git remote add origin https://github.com/user/monrepo.git
@@ -121,8 +130,11 @@ $ git branch -M main
 $ git push -u origin main
 ```
 
-**Créer et/ ou changer de branche**  
+---
+
+///example | **Créer et/ ou changer de branche**  
 "Tu veux ajouter une feature ou tester quelque chose"
+///
 
 ```sh
 # Créer une branche avec "-c", change automatiquement à la branche créée
@@ -135,8 +147,11 @@ Switched to branch 'main'
 Your branch is up to date with 'origin/main'.
 ```
 
-**Comparer 2 versions d'un fichier**  
+---
+
+///example | **Comparer 2 versions d'un fichier**  
 "Tu veux savoir quels sont les changements depuis la version du dernier commit. Par exemple pour écrire le message du commit à venir"
+///
 
 ```sh
 # Retourne le diff pour tous les fichiers modifiés et non commit
@@ -149,18 +164,19 @@ $ git diff docs/git.md
 ## Concepts
 
 **.gitignore**
-Par défaut, Git suit tous les fichiers du dossier, or, on veut ne veut pas tracker tous les fichiers de tous les dossiers.  
+
+Par défaut, Git suit tous les fichiers du dossier, or, on ne veut pas tracker tous les fichiers de tous les dossiers.  
 Par exemple le dossier `data/`, ou les informations secrètes (comme les clefs API), ou les fichiers que l'on ne veut pas voir sur GitHub.
 
 On utilise donc un fichier spécial **.gitignore** qui contient simplement les noms des dossiers et fichiers à ignorer pour git.
 
-??? note "Exemple de .gitignore"
+??? abstract "Exemple de .gitignore"
 
     ```sh
     # manually added
     .env                   # <- secrets
     data/
-    models/*               # <- '*' dit à git d'ignorer tout ce que contient models
+    models/*               # <- '*' dit à git d'ignorer tout ce que contient le dossier
     !models/*.py           # <- '!' = inverse - on n'ignore PAS les fichiers .py 
     !models/README.md      # <- on n'ignore pas le readme
     
@@ -179,13 +195,15 @@ On utilise donc un fichier spécial **.gitignore** qui contient simplement les n
 
 
 **Branches**
+
 Les branches (comme pour un arbre) permettent d'expérimenter sans casser le code principal (main). 
-On se détache de la branche principale. Il y a donc une branche active sur lequel on fait les commits, et les autres branches. 
+On se détache de la branche principale. Il y a donc une branche active sur laquelle on fait les commits, et les autres branches. 
 On peut changer de branche à tout moment et ainsi développer plusieurs parties du projet en même temps.
 
-Par exemple :
-Tout notre code se trouve dans un seul script, le projet grandit et ce n'est plus maintenable. On veut changer la structure du code.  
-Pour garder **main** intact (car cette version du projet est validé et fonctionne), on crée une branche. Dans cette branche, on va créer de nouveaux scripts, répartir le code, gérer les imports,... On fait les commits dans la branche, on teste le code. Une fois validé, on fusionne (merge) dans main.
+/// tip | Par exemple  
+Tout le code se trouve dans un seul script, le projet grandit et ce n'est plus maintenable. On veut changer la structure du code.  
+///
+Pour garder **main** intacte (car cette version du projet est validée et fonctionne), on crée une branche. Dans cette branche, on va créer de nouveaux scripts, répartir le code, gérer les imports... On fait les commits dans la branche, on teste le code. Une fois validé, on fusionne (merge) dans main.
 
 ```
 ┌─────────────────────────────────────────┐
@@ -202,17 +220,18 @@ Pour garder **main** intact (car cette version du projet est validé et fonction
 ```
 Les branches sont l’une des fonctionnalités les plus puissantes de Git. Elles permettent de travailler sur plusieurs parties d’un projet en parallèle, ou même de maintenir différentes versions du même projet sans interférer les unes avec les autres.  
 
-En pratique, quand tu changes de branche, Git met automatiquement à jour les fichiers que tu vois. Un même fichier peut exister en plusieurs versions selon les branches — Git sait toujours quelle version appartient à quelle branche.
+En pratique, quand tu changes de branche, Git met automatiquement à jour les fichiers que tu vois. Un même fichier peut exister en plusieurs versions selon les branches. Git sait toujours quelle version appartient à quelle branche.
 
 
 ## Bonnes pratiques
 
-- Faire des commits atomiques : un commit = une seule modification logique. (Il vaut mieux beaucoup de commits simples qu'un commit avec 15 modifications réparties sur quatres fichiers)
-- Écrire des messages de commit explicites : "fix: corriger bug sur login" plutôt que "modif". (Tu peux t'aider de bannière qui oriente directement le thème du commit "fix:", "feat", file:"... )
+- **Faire des commits atomiques** : un commit = une seule modification logique. (Il vaut mieux beaucoup de commits simples qu'un commit avec 15 modifications réparties sur quatres fichiers)
+
+- **Écrire des messages de commit explicites** : `"fix: corriger bug sur login"` plutôt que `"modif"`. (Tu peux t'aider de mots clefs qui orientent directement le thème du commit "fix:", "feat", file:"... )
 
 ??? note "Exemple de messages de commits pour data scientists"
     
-    Les messages de commits sont comme la documentation dans le code, ça peut paraitre évident, mais le toi dans 2 mois qui va devoir comprendre où tu as fait telle modif et surtout pourquoi, va te remercier. Lire un message de commit est bien plus rapide que devoir se plonger dans le code.
+    Les messages de commits sont comme la documentation dans le code, ça peut paraitre évident, mais le toi dans 2 mois qui va devoir comprendre où tu as fait telle modif et surtout pourquoi, va te remercier. Lire un message de commit est bien plus rapide que de devoir se plonger dans le code.
     
     ```
     fix & file:
@@ -229,8 +248,7 @@ En pratique, quand tu changes de branche, Git met automatiquement à jour les fi
     ```
     feat & fix
     
-    fix: type checker complaints about Vector() of lancedb, fixed with
-    Annotated
+    fix: type checker complaints about Vector() of lancedb, fixed with Annotated
     feat: add doc_id as a parameter so the user can choose the document in
     the agent run function. doc_id is added to RAGDeps
     ```
@@ -244,5 +262,6 @@ En pratique, quand tu changes de branche, Git met automatiquement à jour les fi
     - query pipeline in src/rag/query
     ```
 
-- push régulièrement : Si c'est sur GitHub c'est en sécurité.
-- commit tant que c'est frais pour éviter d'oublier les raisons des changements
+- **push régulièrement** : Si c'est sur GitHub c'est en sécurité.
+
+- **commit tant que c'est frais** pour éviter d'oublier les raisons des changements
