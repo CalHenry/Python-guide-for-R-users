@@ -2,6 +2,9 @@
 
 > Ce chapitre n'est pas le plus fun du guide mais c'est un prérequis pour tous les autres : le terminal est le socle commun de tout l'écosystème, celui que R t'a toujours épargné. 
 
+---
+
+## Le coeur du système
 
 Le terminal est un logiciel pour interagir directement avec le shell, l'ordinateur.  
 Pas d'interface, juste des lignes de commandes.
@@ -45,8 +48,6 @@ Si tu dois te connecter à une machine dans un datacenter, le seul moyen d'inter
 
 Savoir se débrouiller dans le terminal même un peu est donc toujours utile, et facilitera tes progrès en informatique.
 
-## Commandes les plus importantes
-
 /// warning | Windows et Unix – Deux écosystèmes différents
 Le terminal dont je parle n'est pas le terminal par défaut de Windows.
 
@@ -65,6 +66,11 @@ Le terminal intégré de VSCode ouvrira maintenant **Bash**.
 
 > Pour aller plus loin : **WSL**. Bien au-delà de ce guide, mais utile pour ta culture : WSL (Windows Subsystem for Linux) est grossièrement une machine virtuelle Linux dans Windows. Microsoft l'a développé par nécessité : environ 70% des développeurs travaillent pour des cibles Unix (serveurs, cloud, infrastructure…), et pour les garder sur Windows, il fallait leur offrir un environnement familier et intégré. WSL est gratuit et pour tous, il s'installe en une commande avec `wsl --install` dans Powershell.
 ///
+
+---
+
+## Commandes les plus importantes
+
 
 Les commandes suivent une logique simple :
 
