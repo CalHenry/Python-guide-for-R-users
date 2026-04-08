@@ -254,7 +254,7 @@ Ruff est présenté dans la [section toolkit](toolkit.md).
   
 ---
 
-## Bonne pratiques de Python
+## Bonnes pratiques de Python
 
 - **Import**
 

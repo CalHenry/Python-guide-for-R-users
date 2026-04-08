@@ -1,4 +1,4 @@
-# Python, environnements virtuels et packages
+# Python sous le capot
 
 > L'écosystème de Python, c'est aussi toute une infrastructure, mais contrairement à R, rien n'est géré pour toi par défaut. Environnements virtuels, gestionnaires de packages, versions de Python, ce chapitre démêle tout ça.
 
