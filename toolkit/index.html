@@ -1,0 +1,1471 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://CalHenry.github.io/Python-guide-for-R-users/toolkit/">
+      
+      
+        <link rel="prev" href="../notebooks/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Toolkit - Python guide for R users</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#toolkit" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Python guide for R users" class="md-header__button md-logo" aria-label="Python guide for R users" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Python guide for R users
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Toolkit
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/CalHenry/Python-guide-for-R-users" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Préface
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../terminal/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Terminal
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../python/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Python sous le capot
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../git/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Git &amp; GitHub
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../coder_python/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Coder en Python
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../notebooks/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Notebooks
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Toolkit
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Python guide for R users" class="md-nav__button md-logo" aria-label="Python guide for R users" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Python guide for R users
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/CalHenry/Python-guide-for-R-users" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Préface
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../terminal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Terminal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python sous le capot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../git/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git &amp; GitHub
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coder_python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coder en Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notebooks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Toolkit
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Toolkit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Python
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#librairies-python-pour-aider-la-transition-depuis-r" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Librairies Python pour aider la transition depuis R
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lecosysteme-de-python-pour-les-data-sciences-et-les-statistiques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        L'écosystème de Python pour les data sciences et les statistiques
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="L&#39;écosystème de Python pour les data sciences et les statistiques">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scientifique" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scientifique
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dataframe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dataframe
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#machine-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Machine Learning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deep-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deep Learning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Databases
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-viz-et-applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data viz et applications
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nlp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NLP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#autres" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Autres
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#web-scraping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Web scraping
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AI
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pieges-classiques-quand-on-vient-de-r" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pièges classiques quand on vient de R
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bonus-ameliorer-son-terminal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bonus : améliorer son terminal
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Python
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#librairies-python-pour-aider-la-transition-depuis-r" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Librairies Python pour aider la transition depuis R
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lecosysteme-de-python-pour-les-data-sciences-et-les-statistiques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        L'écosystème de Python pour les data sciences et les statistiques
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="L&#39;écosystème de Python pour les data sciences et les statistiques">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scientifique" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scientifique
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dataframe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dataframe
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#machine-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Machine Learning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deep-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deep Learning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Databases
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-viz-et-applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data viz et applications
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nlp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NLP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#autres" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Autres
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#web-scraping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Web scraping
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AI
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pieges-classiques-quand-on-vient-de-r" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pièges classiques quand on vient de R
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bonus-ameliorer-son-terminal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bonus : améliorer son terminal
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="toolkit">Toolkit</h1>
+<div class="admonition quote">
+<p class="admonition-title">Le bon outil au bon endroit, c'est mieux.         - Moi</p>
+</div>
+<blockquote>
+<p>Pas besoin de tout lire d'une traite : ce chapitre est fait pour être consulté et reconsulté. Il regroupe les outils et packages recommandés pour les data sciences en Python, et ceux qui apportent un peu de la philosophie R dans l'écosystème Python.</p>
+</blockquote>
+<div class="admonition example">
+<p class="admonition-title"><strong>TL;DR — Mon setup recommandé si tu viens de R</strong></p>
+<ul>
+<li>IDE : <strong>Positron</strong></li>
+<li>Environnement : <strong>uv</strong></li>
+<li>Dataframe : <strong>Polars</strong></li>
+<li>DataViz : <strong>Seaborn</strong> ou <strong>Plotnine</strong></li>
+<li>Statistiques : <strong>statsmodels</strong></li>
+<li>Notebooks : <strong>Marimo</strong></li>
+</ul>
+</div>
+<hr />
+<h2 id="python">Python</h2>
+<p>Outils de l'écosystème pour coder en Python.</p>
+<details class="note">
+<summary>Positron</summary>
+<p><a href="https://positron.posit.co/">Positron (IDE)</a> est un fork de VSCode par Posit, pensé pour les data sciences et pour créer un outil Python et R familier aux développeurs R. </p>
+<blockquote>
+<p>En 2 mots : c'est VSCode qui se déguise en RStudio. VSCode <em>pensé</em> pour les data sciences.  </p>
+</blockquote>
+<p>Les avantages majeurs par rapport à VScode sont :</p>
+<ul>
+<li>
+<p>Support de R et de Python nativement</p>
+</li>
+<li>
+<p>Même layout que RStudio - même logique que RStudio</p>
+</li>
+<li>
+<p>Data explorer</p>
+</li>
+<li>
+<p>UI adaptée pour Python et R (passage de Python à R et de choix de l'environnement virtuel ergonomique)</p>
+</li>
+<li>
+<p>Support natif pour Quarto, Shiny, Air (formateur pour R)</p>
+</li>
+</ul>
+<p>C'est donc un IDE moderne qui propose une meilleure expérience (plus intégrée) pour les data sciences et l'exploration de données que VSCode.<br />
+Positron s'inspire beaucoup de RStudio et pour le mieux.</p>
+<blockquote>
+<p>Posit ne compte pas arrêter de supporter RStudio, qui reste le meilleur outil pour développer en R. 
+Positron est une super alternative pour tout utilisateur de R qui doit se mettre à Python.</p>
+</blockquote>
+</details>
+<details class="note">
+<summary>UV</summary>
+<p><a href="https://docs.astral.sh/uv/pip/environments/">UV (gestionnaire d'environnement)</a> est présenté dans la <a href="../python/">section sur les gestionnaires d'environnements</a>.  </p>
+<p>Commandes les plus utiles de UV</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Doc de la CLI</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>uv<span class="w"> </span><span class="nb">help</span><span class="w"> </span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># détail d&#39;une commande</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>uv<span class="w"> </span><span class="nb">help</span><span class="w"> </span>&lt;command&gt;<span class="w">  </span><span class="c1"># ex : uv help init</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="c1"># Initialiser un projet</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>uv<span class="w"> </span>init<span class="w"> </span>&lt;nom-projet&gt;
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="c1"># Ajouter/ supprimer un package</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>uv<span class="w"> </span>add<span class="w"> </span>&lt;package&gt;
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>uv<span class="w"> </span>remove<span class="w"> </span>&lt;package&gt;
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="c1"># Installer ou mettre à jour l&#39;environnement virtuel</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>uv<span class="w"> </span>sync
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="c1"># Schéma des dépendances du projet sous forme d&#39;arbre</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>uv<span class="w"> </span>tree
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="c1"># Run une commande</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>uv<span class="w"> </span>run<span class="w"> </span>&lt;command&gt;<span class="w">  </span><span class="c1"># ex : uv run marimo edit &lt;notebook.py&gt;</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="c1"># Run un script</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>uv<span class="w"> </span>run<span class="w"> </span>&lt;script.py&gt;<span class="w">  </span><span class="c1"># version compacte de &#39;uv run python &lt;script.py&gt;&#39;</span>
+</code></pre></div>
+</details>
+<details class="note">
+<summary>Pixi</summary>
+<p><a href="https://pixi.prefix.dev/latest/">Pixi (gestionnaire d'environnement pour conda)</a> est présenté en détails <a href="../python/">ici</a>.</p>
+<p>Commandes les plus utiles de Pixi</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Doc de la CLI</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>pixi<span class="w"> </span><span class="nb">help</span><span class="w"> </span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1"># détail d&#39;une commande</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>pixi<span class="w"> </span><span class="nb">help</span><span class="w"> </span>&lt;command&gt;<span class="w">  </span><span class="c1"># ex : pixi help init</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="c1"># Initialiser un projet</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>pixi<span class="w"> </span>init<span class="w"> </span>&lt;nom-projet&gt;
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="c1"># Rechercher/ ajouter/ supprimer un package</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>pixi<span class="w"> </span>search<span class="w"> </span>&lt;package&gt;
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>pixi<span class="w"> </span>add<span class="w"> </span>&lt;package&gt;
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>pixi<span class="w"> </span>remove<span class="w"> </span>&lt;package&gt;
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="c1"># Installer ou mettre à jour l&#39;environnement virtuel</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>pixi<span class="w"> </span>install
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="c1"># Schéma des dépendances du projet sous forme d&#39;arbre</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>pixi<span class="w"> </span>tree
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="c1"># Ouvrir un shell avec l&#39;environnement (remplace &#39;conda activate&#39;, plus besoin de &#39;conda deactivate&#39;, il suffit de faire &#39;exit&#39;)</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>pixi<span class="w"> </span>shell
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="c1"># Run une commande</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>pixi<span class="w"> </span>run<span class="w"> </span>&lt;command&gt;<span class="w"> </span><span class="c1"># ex : pixi run python &lt;file.py&gt;</span>
+</code></pre></div>
+</details>
+<details class="note">
+<summary>Ruff</summary>
+<p><a href="https://docs.astral.sh/ruff/">Ruff (linter and formateur)</a> devient progressivement LE formateur et linter de Python, extrêmement rapide et très bien intégré/ supporté par les IDE.  </p>
+<blockquote>
+<p>Le formateur et le linter de Ruff sont en fait deux sous commandes distinctes, et tu peux n'utiliser que l'un ou l'autre.</p>
+</blockquote>
+<p>Je recommande d'utiliser Ruff avec l'IDE. Chaque fois que tu sauvegardes ton script, ruff le formate. Positron utilise Ruff par défaut.</p>
+<p>Tu peux également utiliser Ruff depuis le terminal.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ruff<span class="w"> </span>check<span class="w"> </span>&lt;script.py&gt;<span class="w">    </span><span class="c1"># linter</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>ruff<span class="w"> </span>format<span class="w"> </span>&lt;script.py&gt;<span class="w">   </span><span class="c1"># formateur</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1"># ou voir toutes les commandes</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>ruff<span class="w"> </span><span class="nb">help</span>
+</code></pre></div></p>
+</details>
+<details class="note">
+<summary>Pyrefly</summary>
+<p><a href="https://pyrefly.org/en/docs/">Pyrefly (type checker)</a> est un Type checker pour Python, extrêmement rapide.</p>
+<p>Comme pour Ruff, Pyrefly est le type checker par défaut de Positron.</p>
+<div class="admonition info">
+<p class="admonition-title">Pyrefly est encore jeune dans l'écosystème.</p>
+<p>Si tu veux savoir pourquoi les développeurs de Positron l'on choisit, tu peux lire <a href="https://positron.posit.co/blog/posts/2026-03-31-python-type-checkers/#what-we-chose">cet article</a>.</p>
+</div>
+</details>
+<blockquote>
+<p><a href="../coder_python/">En savoir plus sur les formateurs de code, linters de code et les type checker</a></p>
+</blockquote>
+<hr />
+<h2 id="librairies-python-pour-aider-la-transition-depuis-r">Librairies Python pour aider la transition depuis R</h2>
+<p>Cette section fait le lien direct entre les packages que l'on utilise sur R et leur équivalent ou solution la plus proche en Python. Soit parce que la philosophie du package R est préservée, soit parce que la librairie est plus facile à prendre en main que le standard de Python.</p>
+<p>Datasets :</p>
+<ul>
+<li><a href="https://pola.rs/">Polars</a> - Synthax expressive proche de dyplr, method chainning. Évite la rugosité de la syntaxe de Pandas quand on vient de R. Lazy mode comme <a href="https://dtplyr.tidyverse.org/">dtplyr</a> et <a href="https://duckplyr.tidyverse.org/">duckplyr</a>.</li>
+</ul>
+<details class="example">
+<summary>Comparatif syntaxe dplyr, polars and pandas</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># dplyr</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">df</span><span class="w"> </span><span class="o">|&gt;</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nf">filter</span><span class="p">(</span><span class="n">mpg</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">20</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="nf">select</span><span class="p">(</span><span class="n">cyl</span><span class="p">,</span><span class="w"> </span><span class="n">mpg</span><span class="p">)</span><span class="w"> </span><span class="o">|&gt;</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="nf">mutate</span><span class="p">(</span><span class="n">kpl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mpg</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">0.425</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># polars</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;mpg&quot;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="p">)</span> \
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s2">&quot;cyl&quot;</span><span class="p">,</span> <span class="s2">&quot;mpg&quot;</span><span class="p">])</span> \
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="o">.</span><span class="n">with_columns</span><span class="p">((</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;mpg&quot;</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.425</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;kpl&quot;</span><span class="p">))</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># pandas</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;mpg&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="p">][[</span><span class="s2">&quot;cyl&quot;</span><span class="p">,</span> <span class="s2">&quot;mpg&quot;</span><span class="p">]]</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">df</span><span class="p">[</span><span class="s2">&quot;kpl&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;mpg&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.425</span>
+</code></pre></div>
+</details>
+<p>Data Viz :</p>
+<ul>
+<li><a href="https://seaborn.pydata.org/">Seaborn</a> - Seaborn est une surcouche de Matplotlib, on utilise les deux librairies ensemble. API moins ruguese que Matplotlib pour les utilisateurs venant de R. Il permet juste de mieux et plus facilement exprimer le graphique, ce qui est souvent difficile avec Matplotlib en venant de ggplot2.</li>
+<li><a href="https://plotnine.org/">Plotnine</a> - ggplot2 porté sur Python (syntaxe pratiquement identique à ggplot2, lifesaver si on vient de R).</li>
+<li><a href="https://posit-dev.github.io/great-tables/articles/intro.html">Great Tables</a> : package gt de R, mais sur Python.</li>
+</ul>
+<p>Notebooks :</p>
+<ul>
+<li><a href="https://marimo.io/">Marimo</a> - Notebook pur Python, réactif, riche et moderne. <a href="../notebooks/">Détails ici</a>.</li>
+<li><a href="https://jupyter.org/">Jupyter</a> : Jupyter reste le standard historique, mais Marimo corrige plusieurs de ses limitations.</li>
+</ul>
+<hr />
+<h2 id="lecosysteme-de-python-pour-les-data-sciences-et-les-statistiques">L'écosystème de Python pour les data sciences et les statistiques</h2>
+<blockquote>
+<p>uniquement les packages principaux, les plus utilisés, les plus populaires ou les plus utiles quand on vient de R.</p>
+</blockquote>
+<h3 id="scientifique">Scientifique</h3>
+<ul>
+<li><a href="https://numpy.org/">Numpy</a>: implémentation pour Python des vecteurs (même logique que R, tout est un array (multidimensionnels contrairement aux vecteurs 1D de R))</li>
+<li><a href="https://scipy.org/">Scipy</a> : boîte à outils scientifique (dont des modules de statistiques), construite au-dessus de NumPy.</li>
+<li><a href="https://www.statsmodels.org/stable/index.html">Statsmodels</a> : librairie d'algorithmes qui reprend l'interface de formule de R.</li>
+</ul>
+<h3 id="dataframe">Dataframe</h3>
+<ul>
+<li><a href="https://pandas.pydata.org/docs/">Pandas</a> : librairie la plus populaire, la plus connue et la plus utilisée pour les dataframes (construit par-dessus numpy). Syntaxe est souvent déroutante quand on vient de R</li>
+<li><a href="https://docs.pola.rs/">Polars</a> : API plus expressive, très performant, possède un mode lazy</li>
+</ul>
+<h3 id="machine-learning">Machine Learning</h3>
+<ul>
+<li><a href="https://scikit-learn.org/stable/index.html">scikit-learn</a> : tout le Machine Learning, très bonne documentation et très bons exemples. LA raison pour laquelle le ML est si populaire sur Python. (construit par-dessus numpy et scipy)</li>
+</ul>
+<h3 id="deep-learning">Deep Learning</h3>
+<ul>
+<li><a href="https://pytorch.org/">Pytorch</a> : grand écosystème de Deep Learning, outils pour créer et déployer des réseaux de neurones. PyTorch est aujourd’hui dominant en recherche et très utilisé aussi en production</li>
+<li><a href="https://www.tensorflow.org/">TensorFlow</a> : globalement le même usage que PyTorch, perd du terrain, mais reste utilisé dans l'industrie.</li>
+<li><a href="https://huggingface.co/docs/transformers/index">Transformers</a> : modèles de Deep Learning : NLP, vision, audio, vidéo. Simple d'utilisation et propose des modèles pré-entrainés</li>
+</ul>
+<h3 id="databases">Databases</h3>
+<ul>
+<li><a href="https://docs.python.org/3/library/sqlite3.html">sqlite3</a> : module de Python pour interagir avec SQLite</li>
+<li><a href="https://duckdb.org/">Duckdb</a> : database SQL pour l'analyse de données. Très performant, parfait pour traiter des gros volumes localement. Fonctionne directement sur les fichiers CSV/ Parquet. Très utilisé avec Polars ou Pandas.  </li>
+</ul>
+<h3 id="data-viz-et-applications">Data viz et applications</h3>
+<ul>
+<li><a href="https://matplotlib.org/">Matplotlib</a> &amp; <a href="https://seaborn.pydata.org/">Seaborn</a> : Duo pour la dataviz</li>
+<li><a href="https://streamlit.io/">Streamlit</a> : Rshiny mais pour Python (mais plus simple et moins flexible)</li>
+</ul>
+<h3 id="nlp">NLP</h3>
+<ul>
+<li><a href="https://spacy.io/">Spacy</a> : pipelines complets et modulaires de NLP. Très utilisé dans l'industrie et en production</li>
+<li><a href="https://www.nltk.org/">NLTK</a> : librairie complète de NLP. Pédagogique, académique. Utilisé dans la recherche</li>
+</ul>
+<h3 id="autres">Autres</h3>
+<ul>
+<li><a href="https://fastapi.tiangolo.com/">FastAPI</a> : Développer des API performantes et faciles à prendre en main.</li>
+<li><a href="https://docs.pydantic.dev/latest/">Pydantic</a> : Data validation</li>
+</ul>
+<details class="note">
+<summary>Avancé</summary>
+<h3 id="test">Test</h3>
+<ul>
+<li><a href="https://docs.pytest.org/en/stable/">Pytest</a> : standard pour écrire des tests. 100% compatible avec les modules de testing de Python.</li>
+</ul>
+<h3 id="web-scraping">Web scraping</h3>
+<ul>
+<li><a href="">Scrapy</a> : Framework complet de scraping. Ne supporte pas le JavaScript.</li>
+<li><a href="https://beautiful-soup-4.readthedocs.io/en/latest/">Beautiful soup</a> : pour parser HTML et XML. Ne prends pas en charge le JavaScript.</li>
+<li><a href="https://playwright.dev/python/docs/intro">Playwright</a> : librairie d'automatisation de navigateur web et de scraping de pages dynamiques (les sites chargés en JavaScript).</li>
+</ul>
+<h3 id="ai">AI</h3>
+<ul>
+<li><a href="https://docs.langchain.com/oss/python/langchain/overview">LangChain</a> : Framework IA le plus utilisé</li>
+<li><a href="https://ai.pydantic.dev/">Pydantic-ai</a> : Framework IA qui intègre le type safety et la data validation au coeur de son design. Parfait pour développer des solutions propres et robustes.</li>
+<li><a href="https://docs.ollama.com/">Ollama</a>, <a href="https://lmstudio.ai/docs/python">LMStudio</a> et <a href="https://vllm.ai/">vLLM</a> : "inference and serving engines", pour utiliser des LLM en local. vLLM est plus puissant et plus complexe. LMStudio permet de facilement utiliser des modèles MLX (pour les puces Apple).</li>
+</ul>
+</details>
+<hr />
+<h2 id="pieges-classiques-quand-on-vient-de-r">Pièges classiques quand on vient de R</h2>
+<p>Même quand la syntaxe ressemble à R, le comportement peut être très différent.</p>
+<div class="admonition info">
+<p class="admonition-title">Mutabilité (le piège n°1)</p>
+</div>
+<p>En R, les objets sont (quasi) immuables, tu t'attends à une copie.<br />
+En Python, beaucoup d’objets sont modifiables en place.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">b</span> <span class="o">=</span> <span class="n">a</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">b</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>  <span class="c1"># [1, 2, 3, 4]</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="c1"># Modifier b modifie aussi a !</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="c1"># Bon réflexe :</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</code></pre></div>
+<hr />
+<div class="admonition info">
+<p class="admonition-title">Index commence à 0</p>
+</div>
+<p>C’est une source d’erreurs constante au début car elle entre en conflit avec les habitudes de R.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Python</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">]</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># 10</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="c1"># En R ça serait :</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># 10</span>
+</code></pre></div>
+<hr />
+<div class="admonition info">
+<p class="admonition-title">Les DataFrames Pandas ne se comportent pas comme ceux de R</p>
+</div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Je veux sélectionner une colonne</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">df</span><span class="p">[</span><span class="s2">&quot;col&quot;</span><span class="p">]</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="c1"># peut être : une vue ou une copie, et entrainer des comportements inattendus.</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># Mon df et cette copie sont liés et modifier l&#39;un peut modifier l&#39;autres. C&#39;est dur à prévoir.</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="c1"># Bon réflexe : utiliser les fonctions de pandas pour sélectionner rows et colonnes, elles retournent un subset (non une copie)</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;col1&quot;</span><span class="p">]</span>   <span class="c1"># sélectionne par nom</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="c1"># ou</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">]]</span> <span class="c1"># selectionne par indice</span>
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Je recommande Polars car il n'a pas ce problème !</p>
+<p>Polars ne modifie jamais en place par défaut, de ce point de vue il se comporte comme R, donc tu ne peux pas modifier un dataframe par accident (alors qu'avec Pandas oui, <em>j'atteste</em>). 
+Le comportement est prévisible.</p>
+</div>
+<hr />
+<div class="admonition info">
+<p class="admonition-title">Typage moins permissif que R</p>
+</div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># avec R :</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="s2">&quot;1&quot;</span> <span class="o">+</span> <span class="mi">1</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="c1"># coercition implicite</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="c1"># avec Python</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="s2">&quot;1&quot;</span> <span class="o">+</span> <span class="mi">1</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="c1"># ❌ erreur</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="c1"># il faut être explicite :</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="nb">int</span><span class="p">(</span><span class="s2">&quot;1&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+</code></pre></div>
+<hr />
+<div class="admonition info">
+<p class="admonition-title">Pas de pipe natif</p>
+</div>
+<p>Pas de pipe pour Python (bien que des packages répliquent cette fonctionnalité, ce n'est pas naturel dans la syntaxe).</p>
+<p>Certaines libraires te permettent de faire du <em>"method chainning"</em> (enchainer des opérations). Particulièrement avec Pandas ou Polars pour faire plusieurs modifications dans un seul bloc.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">polars</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pl</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">q</span> <span class="o">=</span> <span class="p">(</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>    <span class="n">pl</span><span class="o">.</span><span class="n">scan_csv</span><span class="p">(</span><span class="s2">&quot;docs/assets/data/iris.csv&quot;</span><span class="p">)</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>    <span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">)</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>    <span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s2">&quot;species&quot;</span><span class="p">)</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>    <span class="o">.</span><span class="n">agg</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">all</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="p">)</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="c1"># La syntaxe de Python pure ou de Numpy force à imbriquer les fonctions (code illisible)</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">arr</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)),</span> <span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="c1"># Pour contrer cela, on crée des résultats intermédiaires (venant de R, c&#39;est très peu élégant).</span>
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="n">r_square</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="n">r_sum_squared_rows</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">squared_arr</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a><span class="n">r_mean_sum_squared</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">sum_squared_rows</span><span class="p">)</span>
+<a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a><span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">mean_sum_squared</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h2 id="bonus-ameliorer-son-terminal">Bonus : améliorer son terminal</h2>
+<p>Le terminal d'origine est sobre et moche. Texte blanc sur fond noir.<br />
+Le terminal intégré à l'IDE est exactement la même fenêtre mais dans l'éditeur.<br />
+Il est parfaitement fonctionnel mais il ne donne pas envie.  </p>
+<p>Il est possible qu'un jour, à force de passer du temps dans ce rectangle noir, tu aies envie de couleurs et de plus d'ergonomie. Le terminal est extensible sans limites et de nombreux logiciels existent justement pour rendre cette expérience plus agréable.</p>
+<p>Dans cette section bonus, je présente quelques améliorations basiques, pour rendre l'expérience du terminal meilleure. Ces outils vont aussi améliorer le terminal intégré dans l'IDE.</p>
+<ul>
+<li><a href="https://github.com/tealdeer-rs/tealdeer">Tldr</a> : Explique une commande avec des exemples simples et concrêt (suffit souvent à se débloquer et évite de devoir aller dans la doc</li>
+<li><a href="https://github.com/sharkdp/bat">Bat</a> : Remplace <code>cat</code>, ajoute du synthax highlighting et les statuts git</li>
+</ul>
+<details class="example">
+<summary>bat vs cat</summary>
+<p><img alt="light bat" class="only-light" src="../screenshots/bat_light.png" />
+<img alt="dark bat" class="only-dark" src="../screenshots/bat_dark.png" /></p>
+<p><img alt="light cat" class="only-light" src="../screenshots/cat_light.png" />
+<img alt="dark cat" class="only-dark" src="../screenshots/cat_dark.png" /></p>
+</details>
+<ul>
+<li>
+<p><a href="https://eza.rocks/">Eza</a> : Remplace "ls", plus de fonctionnalités et des couleurs</p>
+</li>
+<li>
+<p><a href="https://zoxide.org/">Zoxide</a> : Remplace "cd", mémorise les dossiers visités</p>
+</li>
+<li>
+<p><a href="https://starship.rs/">Starship</a> : Personnaliser le prompt</p>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.top", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
