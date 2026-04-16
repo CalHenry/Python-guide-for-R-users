@@ -1,6 +1,6 @@
 # Notebooks
 
-> En R, tu as probablement utilisé R Markdown ou Quarto. Python a son équivalent historique : **Jupyter**.
+> Avec R, tu as probablement utilisé R Markdown ou Quarto. Python a son équivalent historique : **Jupyter**.
 
 > Alors pourquoi une autre librairie de notebooks alors que Jupyter existe, et qu'il sert autant pour R que pour Python ?
 
