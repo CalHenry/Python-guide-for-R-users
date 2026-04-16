@@ -11,3 +11,6 @@ wheels/
 
 # apple
 .DS_Store
+
+# zensical built files
+site
