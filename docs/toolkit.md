@@ -21,9 +21,9 @@
 
 Outils de l'écosystème pour coder en Python.
 
-??? note "Positron"
+??? note "Positron (IDE)"
 
-    [Positron (IDE)](https://positron.posit.co/) est un fork de VSCode par Posit, pensé pour les data sciences et pour créer un outil Python et R familier aux développeurs R. 
+    [Positron](https://positron.posit.co/) est un fork de VSCode par Posit, pensé pour les data sciences et pour créer un outil Python et R familier aux développeurs R. 
     
     > En 2 mots : c'est VSCode qui se déguise en RStudio. VSCode *pensé* pour les data sciences.  
     
