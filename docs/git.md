@@ -1,6 +1,6 @@
 # Git & GitHub
 
-> Si tu as déjà survécu avec des fichiers `analyse_final_v2_VRAIMENT_FINAL.R`, Git est la solution propre à ce problème. C'est l'outil de versioning standard, incontournable dès qu'on travaille en équipe ou sur des projets sérieux.
+> Si tu as déjà survécu avec des fichiers `analyse_final_v2_VRAIMENT_FINAL.R`, Git est la solution à ce problème. C'est l'outil de versioning standard, incontournable dès qu'on travaille en équipe ou sur des projets sérieux.
 
 ---
 
@@ -105,8 +105,10 @@ Git est un outil en ligne de commande (CLI), mais les IDE modernes (VSCode, RStu
 ```sh
 # 1. Voir ce qui a changé
 $ git status
+
 # 2. Ajouter les fichiers souhaités
 $ git add docs/git.md
+
 # 3. Créer le commit
 $ git commit -m "doc: améliorer la section git"
 ```
@@ -170,7 +172,7 @@ $ git diff docs/git.md
 
 ## Concepts propres à Git
 
-**.gitignore**
+#### **.gitignore**
 
 Par défaut, Git suit tous les fichiers du dossier, or, on ne veut pas tracker tous les fichiers de tous les dossiers.  
 Par exemple le dossier `data/`, ou les informations secrètes (comme les clefs API), ou les fichiers que l'on ne veut pas voir sur GitHub.
@@ -201,7 +203,7 @@ On utilise donc un fichier spécial **.gitignore** qui contient simplement les n
     ```
 
 
-**Branches**
+#### **Branches**
 
 Les branches (comme pour un arbre) permettent d'expérimenter sans casser le code principal (main). 
 On se détache de la branche principale. Il y a donc une branche active sur laquelle on fait les commits, et les autres branches. 
@@ -210,25 +212,92 @@ On peut changer de branche à tout moment et ainsi développer plusieurs parties
 /// tip | Par exemple  
 Tout le code se trouve dans un seul script, le projet grandit et ce n'est plus maintenable. On veut changer la structure du code.  
 ///
-Pour garder **main** intacte (car cette version du projet est validée et fonctionne), on crée une branche. Dans cette branche, on va créer de nouveaux scripts, répartir le code, gérer les imports... On fait les commits dans la branche, on teste le code. Une fois validé, on fusionne (merge) dans main.
+Pour garder **main** intacte (car cette version du projet est validée et fonctionne), on crée une branche. Dans cette branche, on va créer de nouveaux scripts, répartir le code, gérer les imports... On fait les commits dans la branche, on teste le code. Une fois validé, on fusionne (**merge**) dans main.
 
-```
-┌─────────────────────────────────────────┐
-│                                         │
-│  main:                                  │
-│    o---o---o---o                        │
-│         \                               │
-│          \---o---o   feature-branch     │
-│                                         │
-│  ↑ main peut continuer d'avancer        │
-│  ↳ dev en parallèle sur feature-branch  │
-│                                         │
-└─────────────────────────────────────────┘
-```
+=== "basique"
+
+    ``` mermaid
+    ---
+    config:
+      theme: 'base'
+      gitGraph:
+        showCommitLabel: false
+    ---
+    gitGraph
+       commit
+       commit
+       branch dev
+       checkout dev
+       commit
+       commit
+       checkout main
+       commit
+       commit
+       checkout dev
+       commit
+       commit
+       checkout main
+       merge dev
+       commit
+       commit
+       
+
+    ```
+    
+    - Développe sur la branche 'dev' et merge quand c'est prêt 
+    - main peut toujours évoluer en parallèle
+    
+=== "plus complexe - travail en équipe"
+
+    ```mermaid
+    ---
+    config:
+      theme: 'base'
+      gitGraph:
+        showCommitLabel: false
+    ---
+    gitGraph
+       commit
+       commit
+       branch model-experiment/randomforest
+       checkout model-experiment/randomforest
+       commit
+       commit
+       checkout main
+       merge model-experiment/randomforest
+       commit
+       checkout main
+       commit
+       branch data/dev-scrapping-pipeline
+       checkout data/dev-scrapping-pipeline
+       commit 
+       checkout main
+       commit
+       branch dev/api
+       checkout dev/api
+       commit
+       commit
+       checkout main
+       merge dev/api
+       checkout data/dev-scrapping-pipeline
+       commit
+       commit
+       checkout main
+       commit
+       commit
+    ```
+    
+    - une branche pour chaque ajout marquant (feature, modèle, travail de donnée..)
+    
+    - le nom de la branche est explicite
+    
+    - extensible
+
 Les branches sont l’une des fonctionnalités les plus puissantes de Git. Elles permettent de travailler sur plusieurs parties d’un projet en parallèle, ou même de maintenir différentes versions du même projet sans interférer les unes avec les autres.  
 
 En pratique, quand tu changes de branche, Git met automatiquement à jour les fichiers que tu vois. Un même fichier peut exister en plusieurs versions selon les branches. Git sait toujours quelle version appartient à quelle branche.
 
+--- 
 
 ## Bonnes pratiques
 
